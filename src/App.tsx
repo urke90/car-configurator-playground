@@ -1,7 +1,9 @@
-import './App.css';
-
 function App() {
-  return <h1>Car Configurator App</h1>;
+  return (
+    <div>
+      <h1>Car Configurator App</h1>
+    </div>
+  );
 }
 
 export default App;
