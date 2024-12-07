@@ -1,3 +1,5 @@
+@use './colors';
+
 $h2-font-size: 32px;
 $h3-font-size: 24px;
 $h4-font-size: 18px;
@@ -8,74 +10,86 @@ $h3-line-height: 1.4;
 $h4-line-height: 1.4;
 $h5-line-height: 1.5;
 
-.h1 {
+.h1-regular {
+  color: colors.$primary-100;
+  font-family: 'Satoshi-Regular';
   font-size: 42px;
   font-weight: 400;
   line-height: 1.1;
 }
 
-.h2-normal,
+.h2-regular,
 .h2-bold {
   font-size: $h2-font-size;
   line-height: $h2-line-height;
 }
 
-.h2-normal {
+.h2-regular {
+  font-family: 'Satoshi-Regular';
   font-weight: 400;
 }
 
 .h2-bold {
+  font-family: 'Satoshi-Bold';
   font-weight: 700;
 }
 
-.h3-normal,
+.h3-regular,
 .h3-medium {
   font-size: $h3-font-size;
   line-height: $h3-line-height;
 }
 
-.h3-normal {
+.h3-regular {
+  font-family: 'Satoshi-Regular';
   font-weight: 400;
 }
 
 .h3-medium {
+  font-family: 'Satoshi-Medium';
   font-weight: 500;
 }
 
-.h4-normal,
+.h4-regular,
 .h4-medium {
   font-size: $h4-font-size;
   line-height: $h4-line-height;
 }
 
-.h4-normal {
+.h4-regular {
+  font-family: 'Satoshi-Regular';
   font-weight: 400;
 }
 
 .h4-medium {
+  font-family: 'Satoshi-Medium';
   font-weight: 500;
 }
 
-.h5-normal,
+.h5-regular,
 .h5-medium,
 .h5-semi-bold {
   font-size: $h5-font-size;
   line-height: $h5-line-height;
 }
 
-.h4-normal {
+.h5-regular {
+  font-family: 'Satoshi-Regular';
   font-weight: 400;
 }
 
-.h4-medium {
+.h5-medium {
+  font-family: 'Satoshi-Medium';
   font-weight: 500;
 }
 
 .h5-semi-bold {
-  font-weight: 500;
+  font-family: 'Satoshi-Semibold';
+  font-weight: 600;
 }
 
-.h6 {
+.h6-regular {
+  font-family: 'Satoshi-Regular';
   font-size: 14px;
   font-weight: 400;
   line-height: 1.4;

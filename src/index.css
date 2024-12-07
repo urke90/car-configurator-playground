@@ -1,0 +1,6 @@
+@import url('./assets/fonts/WEB/css/satoshi.css');
+
+.h1-regular {
+  font-family: 'Satoshi-Bold';
+  color: red;
+}
