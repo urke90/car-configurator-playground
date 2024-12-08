@@ -1,0 +1,39 @@
+@use '../../scss/colors' as *;
+
+.btn {
+  height: 44px;
+  padding: 5px 15px;
+  font-size: 24px;
+  border-radius: 3px;
+  background-color: $primary-100;
+  color: $base-600;
+
+  &--small {
+    height: 35px;
+    font-size: 18px;
+  }
+
+  &--secondary {
+    color: $base-100;
+    background-color: $base-600;
+    border: 1px solid $base-200;
+
+    &.btn:hover {
+      background-color: $base-500;
+    }
+    &.btn:disabled {
+      color: $base-300;
+      background-color: $base-400;
+      border: none;
+      cursor: not-allowed;
+    }
+  }
+
+  &:hover {
+    background-color: $primary-200;
+  }
+
+  &:disabled {
+    background-color: $base-400;
+  }
+}
