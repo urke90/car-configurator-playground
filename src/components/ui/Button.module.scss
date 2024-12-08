@@ -7,6 +7,13 @@
   border-radius: 3px;
   background-color: $primary-100;
   color: $base-600;
+  border: none;
+  outline: none;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $primary-200;
+  }
 
   &--small {
     height: 35px;
@@ -14,26 +21,43 @@
   }
 
   &--secondary {
+    height: 35px;
+    font-size: 18px;
     color: $base-100;
     background-color: $base-600;
     border: 1px solid $base-200;
 
-    &.btn:hover {
+    &.btn:not(:disabled):hover {
       background-color: $base-500;
     }
-    &.btn:disabled {
-      color: $base-300;
-      background-color: $base-400;
-      border: none;
-      cursor: not-allowed;
-    }
+    // &.btn:disabled {
+    //   color: $base-300;
+    //   background-color: $base-400;
+    //   border: none;
+    //   cursor: not-allowed;
+    // }
   }
 
-  &:hover {
-    background-color: $primary-200;
+  &--tertiary {
+    height: 34px;
+    padding: 5px;
+    font-size: 16px;
+    color: $base-100;
+    background-color: $base-500;
+
+    &-xs {
+      padding-left: 5px;
+      padding-right: 2px;
+    }
+    &.btn:not(:disabled):hover {
+      background-color: $base-500;
+    }
   }
 
   &:disabled {
+    color: $base-300;
     background-color: $base-400;
+    border: none;
+    cursor: not-allowed;
   }
 }

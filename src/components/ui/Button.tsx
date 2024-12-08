@@ -9,12 +9,7 @@ const Button: React.FC<IButtonProps> = ({ className, ...rest }) => {
   console.log('classes', classes);
   console.log('className', className);
 
-  return (
-    <button
-      className={`${classes.btn}  ${classes['btn--secondary']} ${classes['btn--small']}`}
-      {...rest}
-    />
-  );
+  return <button className={`${classes.btn} ${classes['btn--tertiary']}`} {...rest} />;
 };
 
 export default Button;
