@@ -1,0 +1,70 @@
+@use '../../scss/colors' as *;
+@use '../../scss/base';
+
+.btn {
+  height: 44px;
+  padding: 5px 15px;
+  font-size: 24px;
+  border-radius: 3px;
+  background-color: $primary-100;
+  color: $base-600;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  transition: base.$transition;
+
+  &:hover {
+    background-color: $primary-200;
+  }
+
+  &--small {
+    height: 35px;
+    font-size: 18px;
+  }
+
+  &--icon {
+    width: 34px;
+    height: 34px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+  }
+
+  &--secondary {
+    height: 35px;
+    font-size: 18px;
+    color: $base-100;
+    background-color: $base-600;
+    border: 1px solid $base-200;
+
+    &.btn:not(:disabled):hover {
+      background-color: $base-500;
+    }
+  }
+
+  &--tertiary {
+    display: flex;
+    align-items: center;
+    height: 34px;
+    padding: 5px;
+    font-size: 16px;
+    color: $base-100;
+    background-color: $base-500;
+
+    &-xs {
+      padding-left: 5px;
+      padding-right: 2px;
+    }
+    &.btn:not(:disabled):hover {
+      background-color: $base-500;
+    }
+  }
+
+  &:disabled {
+    color: $base-300;
+    background-color: $base-400;
+    border: none;
+    cursor: not-allowed;
+  }
+}
