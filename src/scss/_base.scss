@@ -16,6 +16,11 @@ body {
   margin: 0;
   padding: 0;
   display: flex;
-  min-width: 320px;
+
+  width: max(320px, 100%);
   min-height: 100vh;
+}
+
+#root {
+  width: inherit;
 }

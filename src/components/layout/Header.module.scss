@@ -1,0 +1,26 @@
+@use '/src/scss/colors' as colors;
+@use '/src/scss/typography' as typography;
+
+.header {
+  padding: 15px 50px;
+  background-color: colors.$primary-100;
+
+  &__container {
+    width: min(100%, 1700px);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  &__title {
+    @extend .h2-bold;
+    color: colors.$base-600;
+    margin: 0;
+  }
+
+  &__text {
+    color: colors.$base-600;
+    margin: 0;
+  }
+}
