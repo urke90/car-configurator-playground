@@ -19,6 +19,11 @@
     display: grid;
     place-content: center;
 
+    &--error {
+      border: 1px solid colors.$error;
+      box-shadow: 0 0 0 3px #ff2d2e33;
+    }
+
     &::before {
       content: '';
       background: url('/src/assets/icons/checkmark.svg');
@@ -38,6 +43,10 @@
       // filter: drop-shadow(0 0 3px rgba(0, 0, 0, 0.08));
     }
 
+    &:hover:disabled {
+      box-shadow: none;
+    }
+
     &:checked::before {
       transform: scale(1);
       align-self: center;
@@ -48,16 +57,12 @@
       border: 1px solid transparent;
     }
 
-    &:disabled::before {
-      opacity: 50%;
-    }
-
-    &:hover:disabled {
-      box-shadow: none;
-    }
-
     &:checked:disabled::before {
       box-shadow: none;
+    }
+
+    &:disabled::before {
+      opacity: 50%;
     }
   }
 
