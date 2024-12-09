@@ -1,5 +1,4 @@
 @use '/src/scss/colors' as colors;
-@use '/src/scss/typography' as typography;
 
 .header {
   padding: 15px 50px;
@@ -16,11 +15,9 @@
   &__title {
     @extend .h2-bold;
     color: colors.$base-600;
-    margin: 0;
   }
 
   &__text {
     color: colors.$base-600;
-    margin: 0;
   }
 }
