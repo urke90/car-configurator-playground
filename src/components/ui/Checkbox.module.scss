@@ -1,0 +1,65 @@
+@use '/src/scss/colors';
+@use '/src/scss/base';
+
+.checkbox {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  &__input {
+    -webkit-appearance: none;
+    appearance: none;
+    background-color: #fff;
+    margin: 0;
+    width: 16px;
+    height: 16px;
+    border: 1px solid colors.$base-300;
+    border-radius: base.$border-radius-3;
+    display: grid;
+    place-content: center;
+
+    &::before {
+      content: '';
+      background: url('/src/assets/icons/checkmark.svg');
+      background-color: colors.$primary-100;
+      width: inherit;
+      height: inherit;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transform: scale(0);
+    }
+
+    &:hover,
+    &:hover::before {
+      box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.08);
+      transition: all 0.3s;
+      // filter: drop-shadow(0 0 3px rgba(0, 0, 0, 0.08));
+    }
+
+    &:checked::before {
+      transform: scale(1);
+      align-self: center;
+      border-radius: base.$border-radius-3;
+    }
+
+    &:checked:disabled {
+      border: 1px solid transparent;
+    }
+
+    &:disabled::before {
+      opacity: 50%;
+    }
+
+    &:hover:disabled {
+      box-shadow: none;
+    }
+
+    &:checked:disabled::before {
+      box-shadow: none;
+    }
+  }
+
+  &__label {
+  }
+}
