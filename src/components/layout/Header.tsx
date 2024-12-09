@@ -3,8 +3,6 @@ import classes from './Header.module.scss';
 // ----------------------------------------------------------------
 
 const Header: React.FC = () => {
-  console.log('classes', classes);
-
   return (
     <div className={classes.header}>
       <header className={classes.header__container}>

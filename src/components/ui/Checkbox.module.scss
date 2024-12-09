@@ -1,0 +1,82 @@
+@use '/src/scss/colors' as colors;
+@use '/src/scss/base' as base;
+@use '/src/scss/typography' as typography;
+
+.checkbox {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  &__input {
+    -webkit-appearance: none;
+    appearance: none;
+    background-color: #fff;
+    margin: 0;
+    width: 16px;
+    height: 16px;
+    border: 1px solid colors.$base-300;
+    border-radius: base.$border-radius-3;
+    display: grid;
+    place-content: center;
+
+    &--error {
+      border: 1px solid colors.$error;
+      box-shadow: 0 0 0 3px #ff2d2e33;
+    }
+
+    &::before {
+      content: '';
+      background: url('/src/assets/icons/checkmark.svg');
+      background-color: colors.$primary-100;
+      width: inherit;
+      height: inherit;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transform: scale(0);
+    }
+
+    &:hover,
+    &:hover::before {
+      box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.08);
+      transition: all 0.3s;
+    }
+
+    &:hover:disabled {
+      box-shadow: none;
+      cursor: not-allowed;
+    }
+
+    &:checked::before {
+      transform: scale(1);
+      align-self: center;
+      border-radius: base.$border-radius-3;
+    }
+
+    &:checked:disabled {
+      border: 1px solid transparent;
+    }
+
+    &:checked:disabled::before {
+      box-shadow: none;
+    }
+
+    &:disabled::before {
+      opacity: 50%;
+    }
+  }
+
+  &__label {
+    @extend .h5-regular;
+    color: colors.$base-100;
+
+    &--error {
+      color: colors.$error;
+    }
+  }
+
+  &:has(&__input:disabled) &__label {
+    opacity: 50%;
+    cursor: not-allowed;
+  }
+}
