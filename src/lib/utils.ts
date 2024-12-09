@@ -12,6 +12,22 @@ export const generateClassName = (
   classesToCreate: string[]
 ) => {
   if (classesToCreate.length === 0) return '';
+  const unsupportedClassNames: string[] = [];
 
-  return classesToCreate.map((c) => moduleClasses[c]).join(' ');
+  const classes = classesToCreate
+    .filter((c) => {
+      if (!moduleClasses[c]) {
+        unsupportedClassNames.push(c);
+        return false;
+      }
+      return true;
+    })
+    .map((c) => moduleClasses[c])
+    .join(' ');
+
+  if (unsupportedClassNames.length) {
+    console.warn('Unsupported className provided', unsupportedClassNames);
+  }
+
+  return classes;
 };
