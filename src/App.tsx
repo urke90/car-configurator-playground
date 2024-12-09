@@ -14,7 +14,7 @@ function App() {
           margin: '50px',
         }}
       >
-        <Checkbox disabled label="Checkbox text" />
+        <Checkbox isError disabled label="Checkbox text" />
       </div>
     </div>
   );
