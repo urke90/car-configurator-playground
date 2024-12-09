@@ -40,11 +40,11 @@
     &:hover::before {
       box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.08);
       transition: all 0.3s;
-      // filter: drop-shadow(0 0 3px rgba(0, 0, 0, 0.08));
     }
 
     &:hover:disabled {
       box-shadow: none;
+      cursor: not-allowed;
     }
 
     &:checked::before {
@@ -70,12 +70,13 @@
     @extend .h5-regular;
     color: colors.$base-100;
 
-    &--disabled {
-      opacity: 50%;
-    }
-
     &--error {
       color: colors.$error;
     }
+  }
+
+  &:has(&__input:disabled) &__label {
+    opacity: 50%;
+    cursor: not-allowed;
   }
 }

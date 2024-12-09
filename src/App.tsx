@@ -1,5 +1,4 @@
 import Header from '@/components/layout/Header';
-import Checkbox from '@/components/ui/Checkbox';
 
 function App() {
   return (
@@ -14,7 +13,7 @@ function App() {
           margin: '50px',
         }}
       >
-        <Checkbox isError label="Checkbox text" />
+        <h4>Konfigurator servisa</h4>
       </div>
     </div>
   );

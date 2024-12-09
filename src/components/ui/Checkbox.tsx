@@ -8,23 +8,20 @@ interface ICheckboxProps extends ComponentPropsWithoutRef<'input'> {
   isError?: boolean;
 }
 
-const Checkbox: React.FC<ICheckboxProps> = ({ id, label, disabled = false, isError, ...rest }) => {
-  console.log('classess', classes);
-  console.log('isError', isError);
-
+const Checkbox: React.FC<ICheckboxProps> = ({
+  id,
+  label,
+  disabled = false,
+  isError = false,
+  ...rest
+}) => {
   const labelClassName = [classes.checkbox__label];
   const inputClassName = [classes.checkbox__input];
-
-  if (disabled) {
-    labelClassName.push(classes['checkbox__label--disabled']);
-  }
 
   if (isError) {
     labelClassName.push(classes['checkbox__label--error']);
     inputClassName.push(classes['checkbox__input--error']);
   }
-
-  console.log('inputClassName', inputClassName.join(' '));
 
   return (
     <div className={classes.checkbox}>
