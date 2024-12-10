@@ -1,5 +1,7 @@
 import Header from '@/components/layout/Header';
 
+import Input from '@/components/ui/Input';
+
 function App() {
   return (
     <div>
@@ -9,11 +11,16 @@ function App() {
         style={{
           // border: '1px solid red',
           display: 'flex',
+          flexDirection: 'column',
           justifyContent: 'center',
           margin: '50px',
         }}
       >
-        <h4>Konfigurator servisa</h4>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+          <Input disabled placeholder="Enter name" label="Name" errorText={''} />
+          <Input disabled placeholder="Enter name" label="Name" errorText="This is error text" />
+          <Input disabled placeholder="Enter name" label="Name" errorText={''} />
+        </div>
       </div>
     </div>
   );
