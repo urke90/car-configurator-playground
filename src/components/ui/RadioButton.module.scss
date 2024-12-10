@@ -1,11 +1,53 @@
+@use '/src/scss/colors' as colors;
+@use '/src/scss/base' as base;
+
 .radio {
   display: flex;
   align-items: center;
   gap: 10px;
+  cursor: pointer;
 
   &__label {
   }
 
   &__input {
+    -webkit-appearance: none;
+    appearance: none;
+    background-color: #fff;
+    margin: 0;
+    // color: colors.$primary-100;
+    width: 16px;
+    height: 16px;
+    border: 1px solid colors.$base-300;
+    border-radius: 50%;
+    display: grid;
+    place-content: center;
+    // box-shadow: inset 1px 1px colors.$primary-100;
+    transition: base.$transition;
+
+    &:not(:disabled):hover {
+      box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.08);
+    }
+
+    &::before {
+      content: '';
+      display: flex;
+      width: 10px;
+      height: 10px;
+      // background-color: colors.$primary-100;
+      box-shadow: inset 10px 10px colors.$primary-100;
+      transform: scale(0);
+      border-radius: 50%;
+    }
+
+    &:checked,
+    &:checked::before {
+      transform: scale(1);
+      border: 1px solid colors.$primary-100;
+    }
+
+    &:disabled {
+      opacity: 50%;
+    }
   }
 }

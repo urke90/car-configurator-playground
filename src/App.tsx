@@ -14,13 +14,13 @@ const App: React.FC = () => {
         {/* <CompletionPage /> */}
         <div
           style={{
-            border: '1px solid red',
+            border: '1px solid blue',
             display: 'flex',
             justifyContent: 'center',
             margin: '50px',
           }}
         >
-          <RadioButton label="Radio button text" />
+          <RadioButton disabled checked label="Radio button text" />
         </div>
       </main>
     </div>
