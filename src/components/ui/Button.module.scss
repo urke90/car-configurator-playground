@@ -1,25 +1,26 @@
-@use '../../scss/colors' as *;
-@use '../../scss/base';
+@use '../../scss/colors' as colors;
+@use '../../scss/base' as base;
+@use '/src/scss/typography';
 
 .btn {
+  @extend .h3-regular;
   height: 44px;
   padding: 5px 15px;
-  font-size: 24px;
   border-radius: 3px;
-  background-color: $primary-100;
-  color: $base-600;
+  background-color: colors.$primary-100;
+  color: colors.$base-600;
   border: none;
   outline: none;
   cursor: pointer;
   transition: base.$transition;
 
   &:hover {
-    background-color: $primary-200;
+    background-color: colors.$primary-200;
   }
 
   &--small {
+    @extend .h4-regular;
     height: 35px;
-    font-size: 18px;
   }
 
   &--icon {
@@ -34,12 +35,12 @@
   &--secondary {
     height: 35px;
     font-size: 18px;
-    color: $base-100;
-    background-color: $base-600;
-    border: 1px solid $base-200;
+    color: colors.$base-100;
+    background-color: colors.$base-600;
+    border: 1px solid colors.$base-200;
 
     &.btn:not(:disabled):hover {
-      background-color: $base-500;
+      background-color: colors.$base-500;
     }
   }
 
@@ -49,21 +50,21 @@
     height: 34px;
     padding: 5px;
     font-size: 16px;
-    color: $base-100;
-    background-color: $base-500;
+    color: colors.$base-100;
+    background-color: colors.$base-500;
 
     &-xs {
       padding-left: 5px;
       padding-right: 2px;
     }
     &.btn:not(:disabled):hover {
-      background-color: $base-500;
+      background-color: colors.$base-500;
     }
   }
 
   &:disabled {
-    color: $base-300;
-    background-color: $base-400;
+    color: colors.$base-300;
+    background-color: colors.$base-400;
     border: none;
     cursor: not-allowed;
   }
