@@ -6,7 +6,17 @@ function App() {
   return (
     <>
       <Header />
-      <main style={{ border: '5px solid blue', height: 'calc(100vh - 72px)' }}>
+      <main
+        style={{
+          border: '5px solid blue',
+          height: '100%',
+          minHeight: 'calc(100vh - 72px)',
+        }}
+      >
+        <LandingPage />
+        <LandingPage />
+        <LandingPage />
+        <LandingPage />
         <LandingPage />
       </main>
     </>
