@@ -17,6 +17,10 @@
     }
   }
 
+  &:has(&__input:disabled) &__label {
+    opacity: 50%;
+  }
+
   &__input {
     -webkit-appearance: none;
     appearance: none;
