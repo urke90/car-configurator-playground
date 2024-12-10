@@ -11,11 +11,12 @@ function App() {
         style={{
           // border: '1px solid red',
           display: 'flex',
+          flexDirection: 'column',
           justifyContent: 'center',
           margin: '50px',
         }}
       >
-        <Input label="Name" errorMessage="Error Message" />
+        <Input disabled placeholder="Enter name" label="Name" errorMessage={''} />
       </div>
     </div>
   );

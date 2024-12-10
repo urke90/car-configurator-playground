@@ -1,5 +1,6 @@
 @use '/src/scss/typography' as typography;
 @use '/src/scss/colors' as colors;
+@use '/src/scss/base' as base;
 
 .container {
   display: flex;
@@ -11,6 +12,38 @@
   }
 
   &__input {
+    @extend .h5-medium;
+    height: 34px;
+    padding: 5px 5px 5px 10px;
+    outline: none;
+    background-color: colors.$base-500;
+    border: 1px solid colors.$base-500;
+    border-radius: base.$border-radius-3;
+    transition: base.$transition;
+    color: colors.$base-100;
+
+    &::placeholder {
+      @extend .h5-regular;
+      color: colors.$base-200;
+    }
+
+    &:disabled {
+      color: colors.$base-200;
+    }
+
+    &:not(:disabled):hover {
+      border: 1px solid colors.$base-400;
+    }
+
+    &:focus {
+      border: 1px solid colors.$primary-200;
+      box-shadow: 0 0 0 2px #0000001a;
+    }
+
+    &:disabled {
+      color: colors.$base-200;
+      cursor: not-allowed;
+    }
   }
 
   &__text {
