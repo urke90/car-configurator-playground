@@ -1,7 +1,7 @@
 import Header from '@/components/layout/Header';
 
+import RadioButton from '@/components/ui/RadioButton';
 import classes from './App.module.scss';
-import LandingPage from './components/pages/LandingPage';
 
 // ----------------------------------------------------------------
 
@@ -10,8 +10,18 @@ const App: React.FC = () => {
     <div className={classes.app}>
       <Header />
       <main className={classes.app__main}>
-        <LandingPage />
+        {/* <LandingPage /> */}
         {/* <CompletionPage /> */}
+        <div
+          style={{
+            border: '1px solid blue',
+            display: 'flex',
+            justifyContent: 'center',
+            margin: '50px',
+          }}
+        >
+          <RadioButton label="Radio button text" />
+        </div>
       </main>
     </div>
   );

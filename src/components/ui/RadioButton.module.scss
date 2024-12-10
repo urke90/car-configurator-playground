@@ -1,0 +1,66 @@
+@use '/src/scss/colors' as colors;
+@use '/src/scss/base' as base;
+@use '/src/scss/typography';
+
+.radio {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+
+  &__label {
+    @extend .h5-regular;
+    color: colors.$base-100;
+
+    &--error {
+      color: colors.$error;
+    }
+  }
+
+  &:has(&__input:disabled) &__label {
+    opacity: 50%;
+  }
+
+  &__input {
+    -webkit-appearance: none;
+    appearance: none;
+    background-color: #fff;
+    margin: 0;
+    width: 16px;
+    height: 16px;
+    border: 1px solid colors.$base-300;
+    border-radius: 50%;
+    display: grid;
+    place-content: center;
+    transition: base.$transition;
+
+    &:not(:disabled, &--error):hover {
+      box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.08);
+    }
+
+    &--error {
+      border: 1px solid colors.$error;
+      box-shadow: 0 0 0 3px #ff2d2e33;
+    }
+
+    &::before {
+      content: '';
+      display: flex;
+      width: 10px;
+      height: 10px;
+      box-shadow: inset 10px 10px colors.$primary-100;
+      transform: scale(0);
+      border-radius: 50%;
+    }
+
+    &:checked,
+    &:checked::before {
+      transform: scale(1);
+      border: 1px solid colors.$primary-100;
+    }
+
+    &:disabled {
+      opacity: 50%;
+    }
+  }
+}
