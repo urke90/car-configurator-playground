@@ -1,5 +1,7 @@
 import Header from '@/components/layout/Header';
 
+import Input from '@/components/ui/Input';
+
 function App() {
   return (
     <div>
@@ -13,7 +15,7 @@ function App() {
           margin: '50px',
         }}
       >
-        <h4>Konfigurator servisa</h4>
+        <Input label="Name" errorMessage="Error Message" />
       </div>
     </div>
   );

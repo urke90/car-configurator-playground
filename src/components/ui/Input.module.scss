@@ -1,8 +1,21 @@
+@use '/src/scss/typography' as typography;
+@use '/src/scss/colors' as colors;
+
 .container {
+  display: flex;
+  flex-direction: column;
+
   &__label {
+    @extend .h6-regular;
+    padding-left: 10px;
   }
+
   &__input {
   }
-  &__error-text {
+
+  &__text {
+    @extend .h6-regular;
+    padding-left: 10px;
+    color: colors.$error;
   }
 }
