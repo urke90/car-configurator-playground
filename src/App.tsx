@@ -20,7 +20,7 @@ const App: React.FC = () => {
             margin: '50px',
           }}
         >
-          <RadioButton disabled checked label="Radio button text" />
+          <RadioButton isError label="Radio button text" />
         </div>
       </main>
     </div>
