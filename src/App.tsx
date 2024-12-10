@@ -1,28 +1,15 @@
 import Header from '@/components/layout/Header';
 
-import Input from '@/components/ui/Input';
+import LandingPage from '@/components/pages/LandingPage';
 
 function App() {
   return (
-    <div>
+    <>
       <Header />
-
-      <div
-        style={{
-          // border: '1px solid red',
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'center',
-          margin: '50px',
-        }}
-      >
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-          <Input disabled placeholder="Enter name" label="Name" errorText={''} />
-          <Input disabled placeholder="Enter name" label="Name" errorText="This is error text" />
-          <Input disabled placeholder="Enter name" label="Name" errorText={''} />
-        </div>
-      </div>
-    </div>
+      <main style={{ border: '5px solid blue', height: 'calc(100vh - 72px)' }}>
+        <LandingPage />
+      </main>
+    </>
   );
 }
 
