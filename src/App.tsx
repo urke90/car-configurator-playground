@@ -1,7 +1,7 @@
 import Header from '@/components/layout/Header';
-import LandingPage from '@/components/pages/LandingPage';
 
 import classes from './App.module.scss';
+import LandingPage from './components/pages/LandingPage';
 
 // ----------------------------------------------------------------
 
@@ -11,6 +11,7 @@ const App: React.FC = () => {
       <Header />
       <main className={classes.app__main}>
         <LandingPage />
+        {/* <CompletionPage /> */}
       </main>
     </div>
   );
