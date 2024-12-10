@@ -5,6 +5,7 @@
 .container {
   display: flex;
   flex-direction: column;
+  height: 74px;
 
   &__label {
     @extend .h6-regular;
@@ -21,6 +22,10 @@
     border-radius: base.$border-radius-3;
     transition: base.$transition;
     color: colors.$base-100;
+
+    &--error {
+      border: 1px solid colors.$error;
+    }
 
     &::placeholder {
       @extend .h5-regular;

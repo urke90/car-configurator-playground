@@ -16,7 +16,11 @@ function App() {
           margin: '50px',
         }}
       >
-        <Input disabled placeholder="Enter name" label="Name" errorMessage={''} />
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+          <Input disabled placeholder="Enter name" label="Name" errorText={''} />
+          <Input disabled placeholder="Enter name" label="Name" errorText="This is error text" />
+          <Input disabled placeholder="Enter name" label="Name" errorText={''} />
+        </div>
       </div>
     </div>
   );
