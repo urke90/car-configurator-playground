@@ -1,0 +1,29 @@
+@use '/src/scss/typography' as typography;
+@use '/src/scss/colors' as colors;
+
+.home {
+  height: 100%;
+  padding: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &__container {
+    width: min(600px, 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+  }
+
+  &__title {
+    @extend .h2-bold;
+    color: colors.$primary-100;
+  }
+  &__text {
+    @extend .h4-regular;
+    color: colors.$base-100;
+    text-align: center;
+  }
+}
