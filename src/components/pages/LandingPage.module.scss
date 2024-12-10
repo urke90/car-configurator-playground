@@ -1,12 +1,12 @@
-@use '/src/scss/typography' as typography;
+@use '/src/scss/typography';
 @use '/src/scss/colors' as colors;
 
 .home {
-  height: 100%;
   padding: 30px;
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-grow: 1;
 
   &__container {
     width: min(600px, 100%);

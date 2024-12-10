@@ -18,7 +18,7 @@ const LandingPage: React.FC = () => {
           se javiti u najkraćem mogućem roku.
         </h4>
         <div className={classes.home__button}>
-          <Button>Pokreni konfigurator</Button>
+          <Button className="btn--small">Pokreni konfigurator</Button>
         </div>
       </div>
     </section>
