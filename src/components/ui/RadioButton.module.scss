@@ -1,5 +1,6 @@
 @use '/src/scss/colors' as colors;
 @use '/src/scss/base' as base;
+@use '/src/scss/typography';
 
 .radio {
   display: flex;
@@ -8,6 +9,12 @@
   cursor: pointer;
 
   &__label {
+    @extend .h5-regular;
+    color: colors.$base-100;
+
+    &--error {
+      color: colors.$error;
+    }
   }
 
   &__input {

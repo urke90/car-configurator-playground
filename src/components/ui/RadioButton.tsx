@@ -10,16 +10,18 @@ interface IRadioButtonProps extends ComponentPropsWithoutRef<'input'> {
 }
 
 const RadioButton: React.FC<IRadioButtonProps> = ({ id, label, isError = false, ...rest }) => {
-  const labelClassName: string[] = [classes.radio__input];
+  const inputClassName: string[] = [classes.radio__input];
+  const labelClassName: string[] = [classes.radio__label];
 
   if (isError) {
-    labelClassName.push(classes['radio__input--error']);
+    inputClassName.push(classes['radio__input--error']);
+    labelClassName.push(classes['radio__label--error']);
   }
 
   return (
     <div className={classes.radio}>
-      <input type="radio" className={labelClassName.join(' ')} name="" id={id} {...rest} />
-      <label className={classes.radio__label} htmlFor={id}>
+      <input type="radio" className={inputClassName.join(' ')} name="" id={id} {...rest} />
+      <label className={labelClassName.join(' ')} htmlFor={id}>
         {label}
       </label>
     </div>
