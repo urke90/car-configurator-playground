@@ -1,6 +1,7 @@
 import Checkbox from '@/components/ui/Checkbox';
 import RadioButton from '@/components/ui/RadioButton';
 import { CAR_MODELS, CAR_SERVICE } from '@/lib/constants';
+import { useFormContext } from 'react-hook-form';
 import classes from './ServicePage.module.scss';
 
 // ----------------------------------------------------------------
@@ -8,6 +9,10 @@ import classes from './ServicePage.module.scss';
 interface IServicePageProps {}
 
 const ServicePage: React.FC<IServicePageProps> = (props) => {
+  const { formState } = useFormContext();
+
+  console.log('formState u SERVICE PAGE-U', formState);
+
   return (
     <section className={classes.service}>
       <h2 className={classes.service__title}>Konfigurator Servisa</h2>

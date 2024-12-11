@@ -1,3 +1,5 @@
+import { FormProvider, useForm } from 'react-hook-form';
+
 import Header from '@/components/layout/Header';
 import { EWizzardPage } from '@/lib/constants';
 import { useState } from 'react';
@@ -11,11 +13,43 @@ import classes from './App.module.scss';
 
 // ----------------------------------------------------------------
 
+interface IFormState {
+  carModel: string;
+  service: string[];
+  user: {
+    name: string;
+    phone: string;
+    email: string;
+    note: string;
+  };
+}
+
 const App: React.FC = () => {
   const [page, setPage] = useState(EWizzardPage.CONFIGURATOR_PAGE);
 
+  const methods = useForm<IFormState>({
+    defaultValues: {
+      carModel: '',
+      service: [],
+      user: {
+        name: '',
+        phone: '',
+        email: '',
+        note: '',
+      },
+    },
+  });
+
+  // console.log('errors', errors);
+
+  console.log('watch form', methods.watch());
+
   const handleChangePage = (page: EWizzardPage) => {
     setPage(page);
+  };
+
+  const onSubmit = (data: IFormState) => {
+    console.log('data', data);
   };
 
   return (
@@ -23,8 +57,12 @@ const App: React.FC = () => {
       <Header />
       <main className={classes.app__main}>
         {page === EWizzardPage.LANDING_PAGE && <LandingPage onChangePage={handleChangePage} />}
-        {page === EWizzardPage.CONFIGURATOR_PAGE && <ConfiguratorPage />}
-        {page === EWizzardPage.OVERVIEW_PAGE && <OverviewPage />}
+        <FormProvider {...methods}>
+          <form onSubmit={methods.handleSubmit(onSubmit)}>
+            {page === EWizzardPage.CONFIGURATOR_PAGE && <ConfiguratorPage />}
+            {page === EWizzardPage.OVERVIEW_PAGE && <OverviewPage />}
+          </form>
+        </FormProvider>
         {page === EWizzardPage.COMPLETION_PAGE && <CompletionPage />}
       </main>
     </div>
