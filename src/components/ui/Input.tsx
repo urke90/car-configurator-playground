@@ -10,7 +10,6 @@ interface IInputProps extends ComponentPropsWithoutRef<'input'> {
 }
 
 const Input: React.FC<IInputProps> = ({ type = 'text', id, label, errorText, ...rest }) => {
-  console.log('classes', classes);
   const inputCLassName: string[] = [classes.container__input];
 
   if (errorText) {

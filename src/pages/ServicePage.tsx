@@ -1,9 +1,12 @@
+import CheckmarkIcon from '@/components/icons/Checkmark';
 import Button from '@/components/ui/Button';
 import Checkbox from '@/components/ui/Checkbox';
 import Input from '@/components/ui/Input';
 import RadioButton from '@/components/ui/RadioButton';
 import { CAR_MODELS, CAR_SERVICE } from '@/lib/constants';
+import { useState } from 'react';
 import { useFormContext } from 'react-hook-form';
+
 import classes from './ServicePage.module.scss';
 
 // ----------------------------------------------------------------
@@ -11,6 +14,12 @@ import classes from './ServicePage.module.scss';
 interface IServicePageProps {}
 
 const ServicePage: React.FC<IServicePageProps> = (props) => {
+  const [showDiscountInput, setShowDiscountInput] = useState(false);
+
+  const handleToggleDiscountInput = (show: boolean) => {
+    setShowDiscountInput(show);
+  };
+
   const { formState, getValues } = useFormContext();
 
   console.log('classes', formState);
@@ -41,10 +50,20 @@ const ServicePage: React.FC<IServicePageProps> = (props) => {
           ))}
         </div>
         <div className={classes.service__discount}>
-          <p>ukupno: </p>
-          <div>
-            <Input label="" />
-            <Button className="btn--link">Imam kupon</Button>
+          <p className={classes['service__discount-text']}>ukupno: </p>
+          <div className={classes['service__discount-action']}>
+            {showDiscountInput ? (
+              <>
+                <Input style={{ width: '156px' }} label="" />
+                <Button className="btn--icon">
+                  <CheckmarkIcon />
+                </Button>
+              </>
+            ) : (
+              <Button className="btn--link" onClick={() => handleToggleDiscountInput(true)}>
+                Imam kupon
+              </Button>
+            )}
           </div>
         </div>
       </div>

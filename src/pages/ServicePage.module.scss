@@ -33,8 +33,20 @@
   }
 
   &__discount {
-    background-color: colors.$bg-200;
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 10px 15px;
+    border-radius: 5px;
+    background-color: colors.$bg-200;
+
+    &-action {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 10px;
+      width: 200px;
+    }
   }
 }
