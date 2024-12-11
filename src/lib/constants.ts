@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+
 export enum EWizzardPage {
   LANDING_PAGE = 'LANDING_PAGE',
   CONFIGURATOR_PAGE = 'CONFIGURATOR_PAGE',

@@ -6,6 +6,7 @@ import CompletionPage from '@/pages/CompletionPage';
 import ConfiguratorPage from '@/pages/ConfiguratorPage';
 import LandingPage from '@/pages/LandingPage';
 import OverviewPage from '@/pages/OverviewPage';
+
 import classes from './App.module.scss';
 
 // ----------------------------------------------------------------
