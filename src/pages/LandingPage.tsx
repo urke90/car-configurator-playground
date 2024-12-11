@@ -1,7 +1,7 @@
 import classes from './LandingCompletionPage.module.scss';
 
-import ToolsIcon from '../icons/Tools';
-import Button from '../ui/Button';
+import ToolsIcon from '@/components/icons/Tools';
+import Button from '@/components/ui/Button';
 
 // ----------------------------------------------------------------
 
