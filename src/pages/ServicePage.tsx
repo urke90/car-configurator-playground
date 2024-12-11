@@ -44,7 +44,7 @@ const ServicePage: React.FC<IServicePageProps> = (props) => {
           <p>ukupno: </p>
           <div>
             <Input label="" />
-            <Button className="link">Imam kupon</Button>
+            <Button className="btn--link">Imam kupon</Button>
           </div>
         </div>
       </div>
