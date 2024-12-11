@@ -13,9 +13,9 @@ const ServicePage: React.FC<IServicePageProps> = (props) => {
       <div className={`${classes.service__section}`}>
         <h4 className={classes['service__section-title']}>Odaberite proizvođača vašeg vozila</h4>
         <div className={classes['service__car-models']}>
-          {CAR_MODELS.map(({ id, label, value }) => (
+          {CAR_MODELS.map(({ id, label, value, name }) => (
             <div key={id} style={{ minWidth: '166px' }}>
-              <RadioButton label={label} value={value} />
+              <RadioButton label={label} value={value} name={name} />
             </div>
           ))}
         </div>

@@ -20,7 +20,7 @@ const RadioButton: React.FC<IRadioButtonProps> = ({ id, label, isError = false, 
 
   return (
     <div className={classes.radio}>
-      <input type="radio" className={inputClassName.join(' ')} name="" id={id} {...rest} />
+      <input type="radio" className={inputClassName.join(' ')} id={id} {...rest} />
       <label className={labelClassName.join(' ')} htmlFor={id}>
         {label}
       </label>
