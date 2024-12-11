@@ -16,6 +16,10 @@ import classes from './App.module.scss';
 interface IFormState {
   carModel: string;
   service: string[];
+  price: number;
+  totalPrice: number;
+  discountCode: string;
+  discountValue: number;
   user: {
     name: string;
     phone: string;
@@ -31,6 +35,10 @@ const App: React.FC = () => {
     defaultValues: {
       carModel: '',
       service: [],
+      price: 0,
+      totalPrice: 0,
+      discountCode: '',
+      discountValue: 0,
       user: {
         name: '',
         phone: '',

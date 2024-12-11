@@ -31,4 +31,10 @@
     gap: 10px;
     padding: 10px;
   }
+
+  &__discount {
+    background-color: colors.$bg-200;
+    display: flex;
+    justify-content: space-between;
+  }
 }
