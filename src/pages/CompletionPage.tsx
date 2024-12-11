@@ -1,4 +1,4 @@
-import SuccessIcon from '../icons/Success';
+import SuccessIcon from '@/components/icons/Success';
 import classes from './LandingCompletionPage.module.scss';
 
 // ----------------------------------------------------------------

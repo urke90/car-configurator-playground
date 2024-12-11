@@ -1,11 +1,17 @@
 import classes from './LandingCompletionPage.module.scss';
 
-import ToolsIcon from '../icons/Tools';
-import Button from '../ui/Button';
+import ToolsIcon from '@/components/icons/Tools';
+import Button from '@/components/ui/Button';
+import { EWizzardPage } from '@/lib/constants';
 
 // ----------------------------------------------------------------
 
-const LandingPage: React.FC = () => {
+interface ILandingPage {
+  // eslint-disable-next-line no-unused-vars
+  onChangePage: (page: EWizzardPage) => void;
+}
+
+const LandingPage: React.FC<ILandingPage> = ({ onChangePage }) => {
   return (
     <section className={classes.page}>
       <div className={classes.page__container}>
@@ -18,7 +24,12 @@ const LandingPage: React.FC = () => {
           se javiti u najkraćem mogućem roku.
         </h4>
         <div className={classes.page__button}>
-          <Button className="btn--small">Pokreni konfigurator</Button>
+          <Button
+            onClick={() => onChangePage(EWizzardPage.CONFIGURATOR_PAGE)}
+            className="btn--small"
+          >
+            Pokreni konfigurator
+          </Button>
         </div>
       </div>
     </section>
