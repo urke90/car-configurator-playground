@@ -4,7 +4,7 @@ import classes from './Checkbox.module.scss';
 // ----------------------------------------------------------------
 
 interface ICheckboxProps extends ComponentPropsWithoutRef<'input'> {
-  label: string;
+  label: React.ReactNode;
   isError?: boolean;
 }
 

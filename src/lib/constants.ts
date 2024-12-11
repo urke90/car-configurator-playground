@@ -39,3 +39,34 @@ export const CAR_MODELS = [
     name: 'car-model',
   },
 ];
+
+export const CAR_SERVICE = [
+  {
+    id: '1',
+    label: 'Zamena ulja i filtera',
+    value: 'zamena_ulja_i_filtera',
+    name: 'car_service',
+    price: 65,
+  },
+  {
+    id: '2',
+    label: 'Promjena pakni',
+    value: 'zamena_ulja_i_filtera',
+    name: 'car_service',
+    price: 60,
+  },
+  {
+    id: '3',
+    label: 'Servis klima uređaja',
+    value: 'servis_klima',
+    name: 'car_service',
+    price: 40,
+  },
+  {
+    id: '4',
+    label: 'Balansiranje guma',
+    value: 'balansiranje_guma',
+    name: 'car_service',
+    price: 7,
+  },
+];
