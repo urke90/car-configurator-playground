@@ -18,8 +18,11 @@ interface IFormState {
   service: string[];
   price: number;
   totalPrice: number;
-  discountCode: string;
-  discountValue: number;
+  discount: {
+    code: string;
+    amount: number;
+    type: 'percentage' | 'amount';
+  };
   user: {
     name: string;
     phone: string;
@@ -37,8 +40,11 @@ const App: React.FC = () => {
       service: [],
       price: 0,
       totalPrice: 0,
-      discountCode: '',
-      discountValue: 0,
+      discount: {
+        code: '',
+        amount: 0,
+        type: undefined,
+      },
       user: {
         name: '',
         phone: '',

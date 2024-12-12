@@ -4,7 +4,7 @@ import Checkbox from '@/components/ui/Checkbox';
 import Input from '@/components/ui/Input';
 import RadioButton from '@/components/ui/RadioButton';
 import { CAR_MODELS, CAR_SERVICE } from '@/lib/constants';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import Badge from '@/components/ui/Badge';
 import Textarea from '@/components/ui/Textarea';
@@ -21,11 +21,18 @@ interface IServicePageProps {}
 
 const ServicePage: React.FC<IServicePageProps> = (props) => {
   const [showDiscountInput, setShowDiscountInput] = useState(true);
+  const [discountCode, setDiscountCode] = useState('');
   // const { formState, getValues } = useFormContext();
 
   const handleToggleDiscountInput = (show: boolean) => {
     setShowDiscountInput(show);
   };
+
+  const handleAddDicount = () => {};
+
+  useEffect(() => {
+    console.log('discountCode', discountCode);
+  }, [discountCode]);
 
   return (
     <section className={classes.service}>
@@ -44,7 +51,6 @@ const ServicePage: React.FC<IServicePageProps> = (props) => {
         <h4 className={classes['service__section-title']}>
           Odaberite jednu ili više usluga koju trebate
         </h4>
-        {/* * CHANGE THIS classes to be used for car-service and car-models */}
         <div className={classes['service__inputs-wrapper']}>
           {CAR_SERVICE.map(({ id, label, value, name, price }) => (
             <div key={id} className={classes['service__service']}>

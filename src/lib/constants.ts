@@ -70,3 +70,13 @@ export const CAR_SERVICE = [
     price: 7,
   },
 ];
+
+export const DISCOUNTS = [
+  {
+    id: '1',
+    text: 'Kupon123',
+    value: 'kupon123',
+    amount: 20,
+    type: 'percentage',
+  },
+];
