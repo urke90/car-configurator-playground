@@ -7,6 +7,7 @@ import { CAR_MODELS, CAR_SERVICE } from '@/lib/constants';
 import { useState } from 'react';
 import { useFormContext } from 'react-hook-form';
 
+import Badge from '@/components/ui/Badge';
 import classes from './ServicePage.module.scss';
 
 // ----------------------------------------------------------------
@@ -14,7 +15,7 @@ import classes from './ServicePage.module.scss';
 interface IServicePageProps {}
 
 const ServicePage: React.FC<IServicePageProps> = (props) => {
-  const [showDiscountInput, setShowDiscountInput] = useState(false);
+  const [showDiscountInput, setShowDiscountInput] = useState(true);
 
   const handleToggleDiscountInput = (show: boolean) => {
     setShowDiscountInput(show);
@@ -37,7 +38,7 @@ const ServicePage: React.FC<IServicePageProps> = (props) => {
           ))}
         </div>
       </div>
-      <div style={{ border: '1px solid red' }} className={`${classes.service__section}`}>
+      <div className={`${classes.service__section}`}>
         <h4 className={classes['service__section-title']}>
           Odaberite jednu ili više usluga koju trebate
         </h4>
@@ -67,6 +68,7 @@ const ServicePage: React.FC<IServicePageProps> = (props) => {
           </div>
         </div>
       </div>
+      <Badge label="123123" />
     </section>
   );
 };
