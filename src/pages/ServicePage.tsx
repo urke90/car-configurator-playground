@@ -6,10 +6,11 @@ import Input from '@/components/ui/Input';
 import RadioButton from '@/components/ui/RadioButton';
 import Textarea from '@/components/ui/Textarea';
 import { CAR_MODELS, CAR_SERVICES, DISCOUNTS } from '@/lib/constants';
+import { formatPrice } from '@/lib/utils';
 import type { IServiceSchema } from '@/lib/validation';
 import { useEffect, useState } from 'react';
-
 import { useFormContext } from 'react-hook-form';
+
 import classes from './ServicePage.module.scss';
 
 // ----------------------------------------------------------------
@@ -33,7 +34,10 @@ const ServicePage: React.FC<IServicePageProps> = (props) => {
   const price = watch('price');
   const discount = watch('discount');
 
-  console.log('selectedServices', selectedServices);
+  const p = formatPrice(0);
+
+  console.log('DAJ EUROE', p);
+  // console.log('selectedServices', selectedServices);
 
   useEffect(() => {
     const price = CAR_SERVICES.filter((service) => selectedServices.includes(service.id)).reduce(
@@ -113,7 +117,7 @@ const ServicePage: React.FC<IServicePageProps> = (props) => {
         </div>
         <div className={classes.service__discount}>
           <p className={classes['service__discount-text']}>
-            ukupno: <span className={classes['service__discount-price']}>{price.toFixed(2)}€</span>
+            ukupno: <span className={classes['service__discount-price']}>{formatPrice(price)}</span>
           </p>
           <div>
             {showDiscountInput ? (
