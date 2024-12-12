@@ -40,7 +40,7 @@ export const CAR_MODELS = [
   },
 ];
 
-export const CAR_SERVICE = [
+export const CAR_SERVICES = [
   {
     id: '1',
     label: 'Zamena ulja i filtera',
@@ -51,7 +51,7 @@ export const CAR_SERVICE = [
   {
     id: '2',
     label: 'Promjena pakni',
-    value: 'zamena_ulja_i_filtera',
+    value: 'promena_pakni',
     name: 'car_service',
     price: 60,
   },
@@ -71,7 +71,15 @@ export const CAR_SERVICE = [
   },
 ];
 
-export const DISCOUNTS = [
+interface IDiscount {
+  id: string;
+  label: string;
+  value: string;
+  amount: number;
+  type: 'amount' | 'percentage';
+}
+
+export const DISCOUNTS: IDiscount[] = [
   {
     id: '1',
     label: 'Kupon123',

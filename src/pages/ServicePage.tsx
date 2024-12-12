@@ -5,9 +5,9 @@ import Checkbox from '@/components/ui/Checkbox';
 import Input from '@/components/ui/Input';
 import RadioButton from '@/components/ui/RadioButton';
 import Textarea from '@/components/ui/Textarea';
-import { CAR_MODELS, CAR_SERVICE, DISCOUNTS } from '@/lib/constants';
+import { CAR_MODELS, CAR_SERVICES, DISCOUNTS } from '@/lib/constants';
 import type { IServiceSchema } from '@/lib/validation';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { useFormContext } from 'react-hook-form';
 import classes from './ServicePage.module.scss';
@@ -29,14 +29,32 @@ const ServicePage: React.FC<IServicePageProps> = (props) => {
     setValue,
   } = useFormContext<IServiceSchema>();
 
-  const watchedModel = watch('carModel');
-  const carModel = getValues('carModel');
+  const selectedServices = watch('services');
+  const price = watch('price');
+  const discount = watch('discount');
 
-  // useEffect(() => {
-  //   console.log('carModel', carModel);
-  // }, [carModel]);
+  console.log('selectedServices', selectedServices);
 
-  // console.log('FORM WATCH', watch());
+  useEffect(() => {
+    const price = CAR_SERVICES.filter((service) => selectedServices.includes(service.id)).reduce(
+      (acc, item) => (acc += item.price),
+      0
+    );
+
+    if (discount && discount.amount) {
+      let discountedPrice = 0;
+      if (discount.type === 'amount') {
+        discountedPrice = price - discount.amount;
+        setValue('price', discountedPrice);
+      } else {
+        discountedPrice = price - (price * discount.amount) / 100;
+        setValue('price', discountedPrice);
+      }
+    } else {
+      setValue('price', price);
+    }
+  }, [selectedServices, discount, setValue]);
+
   console.log('formState ERRORS', errors);
 
   const handleToggleDiscountInput = (show: boolean) => {
@@ -50,12 +68,11 @@ const ServicePage: React.FC<IServicePageProps> = (props) => {
     const discountCode = getValues('discount').code;
 
     const foundDiscount = DISCOUNTS.find((d) => d.value === discountCode);
-    console.log('founc');
 
     if (!foundDiscount) {
       setError('discount.code', { message: 'Pogresan kupon.' });
     } else {
-      setValue('discount', {});
+      setValue('discount', { ...foundDiscount });
     }
   };
 
@@ -82,20 +99,22 @@ const ServicePage: React.FC<IServicePageProps> = (props) => {
           Odaberite jednu ili više usluga koju trebate
         </h4>
         <div className={classes['service__inputs-wrapper']}>
-          {CAR_SERVICE.map(({ id, label, value, name, price }) => (
+          {CAR_SERVICES.map(({ id, label, price }) => (
             <div key={id} className={classes['service__service']}>
               <Checkbox
-                {...register('service')}
+                {...register('services')}
                 label={label}
-                value={value}
-                isError={!!errors.service?.message}
+                value={id}
+                isError={!!errors.services?.message}
               />
               <span className={classes['service__service-price']}>({price}€)</span>
             </div>
           ))}
         </div>
         <div className={classes.service__discount}>
-          <p className={classes['service__discount-text']}>ukupno: </p>
+          <p className={classes['service__discount-text']}>
+            ukupno: <span className={classes['service__discount-price']}>{price.toFixed(2)}€</span>
+          </p>
           <div>
             {showDiscountInput ? (
               <>
@@ -111,6 +130,7 @@ const ServicePage: React.FC<IServicePageProps> = (props) => {
                     type="button"
                     className="btn--icon"
                     onClick={handleAddDicount}
+                    disabled={selectedServices.length === 0}
                   >
                     <CheckmarkIcon />
                   </Button>

@@ -9,38 +9,39 @@ import CompletionPage from '@/pages/CompletionPage';
 import LandingPage from '@/pages/LandingPage';
 import OverviewPage from '@/pages/OverviewPage';
 import ConfiguratorPage from '@/pages/ServicePage';
-import { serviceSchema } from './lib/validation';
+import { type IServiceSchema, serviceSchema } from './lib/validation';
 
 import classes from './App.module.scss';
 
 // ----------------------------------------------------------------
 
-interface IFormState {
-  carModel: string;
-  service: string[];
-  price: number;
-  discountedPrice: number;
-  discount: {
-    code: string;
-    amount: number;
-    type: 'percentage' | 'amount';
-  };
-  user: {
-    name: string;
-    phone: string;
-    email: string;
-    note: string;
-  };
-}
+// interface IFormState {
+//   carModel: string;
+//   service: string[];
+//   price: number;
+//   discountedPrice: number;
+//   discount: {
+//     id: string;
+//     code: string;
+//     amount: number;
+//     type: 'percentage' | 'amount';
+//   };
+//   user: {
+//     name: string;
+//     phone: string;
+//     email: string;
+//     note: string;
+//   };
+// }
 
 const App: React.FC = () => {
   const [page, setPage] = useState(EWizzardPage.CONFIGURATOR_PAGE);
 
-  const methods = useForm<IFormState>({
+  const methods = useForm<IServiceSchema>({
     resolver: zodResolver(serviceSchema),
     defaultValues: {
       carModel: '',
-      service: [],
+      services: [],
       price: 0,
       discountedPrice: 0,
       discount: {

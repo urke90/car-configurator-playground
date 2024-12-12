@@ -58,6 +58,11 @@
       gap: 10px;
       width: 200px;
     }
+
+    &-price {
+      @extend .h4-medium;
+      color: colors.$primary-100;
+    }
   }
 
   &__user-inputs {

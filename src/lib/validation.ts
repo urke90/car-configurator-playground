@@ -4,14 +4,14 @@ import { z } from 'zod';
 
 export const serviceSchema = z.object({
   carModel: z.string().min(1, 'Izaberite model.'),
-  service: z.array(z.string()).min(1, 'Izaberite najmanje jednu uslugu.'),
+  services: z.array(z.string()).min(1, 'Izaberite najmanje jednu uslugu.'),
   price: z.number(),
   discountedPrice: z.number(),
   discount: z.object({
     id: z.string().optional(),
     code: z.string().optional(),
     amount: z.number().optional(),
-    type: z.enum(['percentage', 'amount']).optional(),
+    type: z.enum(['percentage', 'amount']),
   }),
   user: z.object({
     name: z.string().min(3, 'Ime i prezime je obavezno.'),
