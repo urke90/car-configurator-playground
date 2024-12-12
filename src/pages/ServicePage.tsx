@@ -7,6 +7,7 @@ import { CAR_MODELS, CAR_SERVICE } from '@/lib/constants';
 import { useState } from 'react';
 
 import Badge from '@/components/ui/Badge';
+import Textarea from '@/components/ui/Textarea';
 import classes from './ServicePage.module.scss';
 
 // ----------------------------------------------------------------
@@ -83,7 +84,7 @@ const ServicePage: React.FC<IServicePageProps> = (props) => {
             <Input label="Broj telefona" />
           </div>
           <Input type="email" label="Email adresa" />
-          <Input type="email" label="Napomena (opcionalno)" />
+          <Textarea label="Napomena (opcionalno)" />
         </div>
       </div>
     </section>
