@@ -17,7 +17,7 @@ interface IFormState {
   carModel: string;
   service: string[];
   price: number;
-  totalPrice: number;
+  discountedPrice: number;
   discount: {
     code: string;
     amount: number;
@@ -39,7 +39,7 @@ const App: React.FC = () => {
       carModel: '',
       service: [],
       price: 0,
-      totalPrice: 0,
+      discountedPrice: 0,
       discount: {
         code: '',
         amount: 0,
@@ -55,7 +55,6 @@ const App: React.FC = () => {
   });
 
   // console.log('errors', errors);
-
   console.log('watch form', methods.watch());
 
   const handleChangePage = (page: EWizzardPage) => {

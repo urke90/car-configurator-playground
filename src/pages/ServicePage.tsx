@@ -1,13 +1,13 @@
 import CheckmarkIcon from '@/components/icons/Checkmark';
+import Badge from '@/components/ui/Badge';
 import Button from '@/components/ui/Button';
 import Checkbox from '@/components/ui/Checkbox';
 import Input from '@/components/ui/Input';
 import RadioButton from '@/components/ui/RadioButton';
-import { CAR_MODELS, CAR_SERVICE } from '@/lib/constants';
-import { useEffect, useState } from 'react';
-
-import Badge from '@/components/ui/Badge';
 import Textarea from '@/components/ui/Textarea';
+import { CAR_MODELS, CAR_SERVICE } from '@/lib/constants';
+import { useRef, useState } from 'react';
+
 import classes from './ServicePage.module.scss';
 
 // ----------------------------------------------------------------
@@ -21,18 +21,17 @@ interface IServicePageProps {}
 
 const ServicePage: React.FC<IServicePageProps> = (props) => {
   const [showDiscountInput, setShowDiscountInput] = useState(true);
-  const [discountCode, setDiscountCode] = useState('');
+  const discountInputRef = useRef<HTMLInputElement | null>(null);
+
   // const { formState, getValues } = useFormContext();
 
   const handleToggleDiscountInput = (show: boolean) => {
     setShowDiscountInput(show);
   };
 
-  const handleAddDicount = () => {};
-
-  useEffect(() => {
-    console.log('discountCode', discountCode);
-  }, [discountCode]);
+  const handleAddDicount = () => {
+    console.log('discountInputRef', discountInputRef);
+  };
 
   return (
     <section className={classes.service}>
@@ -65,8 +64,12 @@ const ServicePage: React.FC<IServicePageProps> = (props) => {
             {showDiscountInput ? (
               <>
                 <div className={classes['service__discount-action']}>
-                  <Input style={{ width: '156px', height: 'auto' }} label="" />
-                  <Button className="btn--icon">
+                  <Input
+                    ref={discountInputRef}
+                    style={{ width: '156px', height: 'auto' }}
+                    label=""
+                  />
+                  <Button type="button" className="btn--icon" onClick={handleAddDicount}>
                     <CheckmarkIcon />
                   </Button>
                 </div>
