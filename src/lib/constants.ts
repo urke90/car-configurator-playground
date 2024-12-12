@@ -74,7 +74,7 @@ export const CAR_SERVICE = [
 export const DISCOUNTS = [
   {
     id: '1',
-    text: 'Kupon123',
+    label: 'Kupon123',
     value: 'Kupon123',
     amount: 20,
     type: 'amount',

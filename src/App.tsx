@@ -1,13 +1,15 @@
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useEffect, useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 
 import Header from '@/components/layout/Header';
 import { EWizzardPage } from '@/lib/constants';
-import { useState } from 'react';
 
 import CompletionPage from '@/pages/CompletionPage';
 import LandingPage from '@/pages/LandingPage';
 import OverviewPage from '@/pages/OverviewPage';
 import ConfiguratorPage from '@/pages/ServicePage';
+import { serviceSchema } from './lib/validation';
 
 import classes from './App.module.scss';
 
@@ -35,6 +37,7 @@ const App: React.FC = () => {
   const [page, setPage] = useState(EWizzardPage.CONFIGURATOR_PAGE);
 
   const methods = useForm<IFormState>({
+    resolver: zodResolver(serviceSchema),
     defaultValues: {
       carModel: '',
       service: [],
@@ -56,12 +59,19 @@ const App: React.FC = () => {
 
   // console.log('errors', errors);
   console.log('FORM WATCH', methods.watch());
+  console.log('FORM ERRORS', methods.watch());
+
+  const { watch } = methods;
+
+  useEffect(() => {
+    console.log('watch u APP', watch());
+  }, [watch]);
 
   const handleChangePage = (page: EWizzardPage) => {
     setPage(page);
   };
 
-  const onSubmit = (data: IFormState) => {
+  const onSubmit = (data: unknown) => {
     console.log('data', data);
   };
 

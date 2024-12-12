@@ -15,22 +15,12 @@ import classes from './ServicePage.module.scss';
 
 interface IServicePageProps {}
 
-// 1. add text for cupon
-// 2. save text for cupon, render the badge,
-// 3. on button icon for badge remove cupon and remove badge, and toggle discountInput not to be visible
-// 4. save action to the form state
-
 const ServicePage: React.FC<IServicePageProps> = (props) => {
   const [showDiscountInput, setShowDiscountInput] = useState(true);
   const discountInputRef = useRef<HTMLInputElement | null>(null);
   const [discountError, setDiscountError] = useState<string | null>(null);
-  const [c, setC] = useState<unknown>();
 
   const { formState, getValues, watch, register } = useFormContext();
-
-  // useEffect(() => {
-  //   console.log('cccccccccccccccccccccccccccccccccccccccc', c);
-  // }, [c]);
 
   const watchedModel = watch('carModel');
   const carModel = getValues('carModel');
@@ -72,13 +62,7 @@ const ServicePage: React.FC<IServicePageProps> = (props) => {
         <div className={classes['service__inputs-wrapper']}>
           {CAR_MODELS.map(({ id, label, value, name }) => (
             <div key={id} style={{ minWidth: '166px' }}>
-              <RadioButton
-                label={label}
-                value={value}
-                // name={name}
-                {...register('carModel')}
-                onChange={(e) => setC(e.target.checked)}
-              />
+              <RadioButton label={label} value={value} {...register('carModel')} />
             </div>
           ))}
         </div>
@@ -90,7 +74,7 @@ const ServicePage: React.FC<IServicePageProps> = (props) => {
         <div className={classes['service__inputs-wrapper']}>
           {CAR_SERVICE.map(({ id, label, value, name, price }) => (
             <div key={id} className={classes['service__service']}>
-              <Checkbox {...register('carModle')} label={label} value={value} name={name} />
+              <Checkbox label={label} value={value} name={name} />
               <span className={classes['service__service-price']}>({price}€)</span>
             </div>
           ))}
