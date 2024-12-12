@@ -59,4 +59,16 @@
       width: 200px;
     }
   }
+
+  &__user-inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    &-row {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+  }
 }

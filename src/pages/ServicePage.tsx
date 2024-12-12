@@ -58,7 +58,7 @@ const ServicePage: React.FC<IServicePageProps> = (props) => {
             {showDiscountInput ? (
               <>
                 <div className={classes['service__discount-action']}>
-                  <Input style={{ width: '156px' }} label="" />
+                  <Input style={{ width: '156px', height: 'auto' }} label="" />
                   <Button className="btn--icon">
                     <CheckmarkIcon />
                   </Button>
@@ -73,6 +73,17 @@ const ServicePage: React.FC<IServicePageProps> = (props) => {
               </Button>
             )}
           </div>
+        </div>
+      </div>
+      <div className={classes.service__section}>
+        <h4 className={classes['service__section-title']}>Vaši podaci</h4>
+        <div className={classes['service__user-inputs']}>
+          <div className={classes['service__user-inputs-row']}>
+            <Input label="Ime i prezime" />
+            <Input label="Broj telefona" />
+          </div>
+          <Input type="email" label="Email adresa" />
+          <Input type="email" label="Napomena (opcionalno)" />
         </div>
       </div>
     </section>
