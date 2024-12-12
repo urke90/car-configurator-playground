@@ -14,14 +14,18 @@ import classes from './ServicePage.module.scss';
 
 interface IServicePageProps {}
 
+// 1. add text for cupon
+// 2. save text for cupon, render the badge,
+// 3. on button icon for badge remove cupon and remove badge, and toggle discountInput not to be visible
+// 4. save action to the form state
+
 const ServicePage: React.FC<IServicePageProps> = (props) => {
   const [showDiscountInput, setShowDiscountInput] = useState(true);
+  const { formState, getValues } = useFormContext();
 
   const handleToggleDiscountInput = (show: boolean) => {
     setShowDiscountInput(show);
   };
-
-  const { formState, getValues } = useFormContext();
 
   console.log('classes', formState);
 
@@ -52,13 +56,18 @@ const ServicePage: React.FC<IServicePageProps> = (props) => {
         </div>
         <div className={classes.service__discount}>
           <p className={classes['service__discount-text']}>ukupno: </p>
-          <div className={classes['service__discount-action']}>
+          <div>
             {showDiscountInput ? (
               <>
-                <Input style={{ width: '156px' }} label="" />
-                <Button className="btn--icon">
-                  <CheckmarkIcon />
-                </Button>
+                <div className={classes['service__discount-action']}>
+                  <Input style={{ width: '156px' }} label="" />
+                  <Button className="btn--icon">
+                    <CheckmarkIcon />
+                  </Button>
+                </div>
+                <div style={{ marginTop: '10px' }}>
+                  <Badge label="Kupon123" />
+                </div>
               </>
             ) : (
               <Button className="btn--link" onClick={() => handleToggleDiscountInput(true)}>
@@ -68,7 +77,6 @@ const ServicePage: React.FC<IServicePageProps> = (props) => {
           </div>
         </div>
       </div>
-      <Badge label="123123" />
     </section>
   );
 };
