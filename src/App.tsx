@@ -55,7 +55,7 @@ const App: React.FC = () => {
   });
 
   // console.log('errors', errors);
-  console.log('watch form', methods.watch());
+  console.log('FORM WATCH', methods.watch());
 
   const handleChangePage = (page: EWizzardPage) => {
     setPage(page);

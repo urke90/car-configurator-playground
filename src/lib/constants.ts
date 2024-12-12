@@ -17,7 +17,7 @@ export const CAR_MODELS = [
   {
     id: '2',
     label: 'Volkswagen',
-    value: 'olkswagen',
+    value: 'volkswagen',
     name: 'car-model',
   },
   {
@@ -75,8 +75,8 @@ export const DISCOUNTS = [
   {
     id: '1',
     text: 'Kupon123',
-    value: 'kupon123',
+    value: 'Kupon123',
     amount: 20,
-    type: 'percentage',
+    type: 'amount',
   },
 ];
