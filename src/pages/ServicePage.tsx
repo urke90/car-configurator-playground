@@ -6,7 +6,8 @@ import Input from '@/components/ui/Input';
 import RadioButton from '@/components/ui/RadioButton';
 import Textarea from '@/components/ui/Textarea';
 import { CAR_MODELS, CAR_SERVICE, DISCOUNTS } from '@/lib/constants';
-import { useEffect, useRef, useState } from 'react';
+import type { IServiceSchema } from '@/lib/validation';
+import { useState } from 'react';
 
 import { useFormContext } from 'react-hook-form';
 import classes from './ServicePage.module.scss';
@@ -17,41 +18,45 @@ interface IServicePageProps {}
 
 const ServicePage: React.FC<IServicePageProps> = (props) => {
   const [showDiscountInput, setShowDiscountInput] = useState(true);
-  const discountInputRef = useRef<HTMLInputElement | null>(null);
-  const [discountError, setDiscountError] = useState<string | null>(null);
 
-  const { formState, getValues, watch, register } = useFormContext();
+  const {
+    formState: { errors },
+    getValues,
+    watch,
+    register,
+    trigger,
+    setError,
+    setValue,
+  } = useFormContext<IServiceSchema>();
 
   const watchedModel = watch('carModel');
   const carModel = getValues('carModel');
 
-  useEffect(() => {
-    console.log('carModel', carModel);
-    console.log('watchedModel', watchedModel);
-  }, [watchedModel, carModel]);
+  // useEffect(() => {
+  //   console.log('carModel', carModel);
+  // }, [carModel]);
 
-  console.log('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', watch());
+  // console.log('FORM WATCH', watch());
+  console.log('formState ERRORS', errors);
 
   const handleToggleDiscountInput = (show: boolean) => {
     setShowDiscountInput(show);
   };
 
-  const handleAddDicount = () => {
-    if (!discountInputRef.current) {
-      console.error('Discount input element is not found!');
-      return;
-    }
-    const discountInputValue = discountInputRef.current.value;
+  const handleAddDicount = async () => {
+    const isValid = await trigger('discount.code');
+    if (!isValid) return;
 
-    const discount = DISCOUNTS.find((discount) => discount.value === discountInputValue);
+    const discountCode = getValues('discount').code;
 
-    if (!discount) {
-      setDiscountError('Invalid discount code. Please try again.');
+    const foundDiscount = DISCOUNTS.find((d) => d.value === discountCode);
+    console.log('founc');
+
+    if (!foundDiscount) {
+      setError('discount.code', { message: 'Pogresan kupon.' });
     } else {
-      setDiscountError(null);
+      setValue('discount', {});
     }
-
-    // console.log('discountInputRef', discountInputRef.current?.value);
   };
 
   return (
@@ -62,7 +67,12 @@ const ServicePage: React.FC<IServicePageProps> = (props) => {
         <div className={classes['service__inputs-wrapper']}>
           {CAR_MODELS.map(({ id, label, value, name }) => (
             <div key={id} style={{ minWidth: '166px' }}>
-              <RadioButton label={label} value={value} {...register('carModel')} />
+              <RadioButton
+                {...register('carModel')}
+                isError={!!errors.carModel?.message}
+                label={label}
+                value={value}
+              />
             </div>
           ))}
         </div>
@@ -74,7 +84,12 @@ const ServicePage: React.FC<IServicePageProps> = (props) => {
         <div className={classes['service__inputs-wrapper']}>
           {CAR_SERVICE.map(({ id, label, value, name, price }) => (
             <div key={id} className={classes['service__service']}>
-              <Checkbox label={label} value={value} name={name} />
+              <Checkbox
+                {...register('service')}
+                label={label}
+                value={value}
+                isError={!!errors.service?.message}
+              />
               <span className={classes['service__service-price']}>({price}€)</span>
             </div>
           ))}
@@ -86,11 +101,17 @@ const ServicePage: React.FC<IServicePageProps> = (props) => {
               <>
                 <div className={classes['service__discount-action']}>
                   <Input
-                    ref={discountInputRef}
                     style={{ width: '156px', height: 'auto' }}
-                    label={discountError ? discountError : ''}
+                    label={''}
+                    {...register('discount.code')}
+                    errorText={errors.discount?.code?.message}
                   />
-                  <Button type="button" className="btn--icon" onClick={handleAddDicount}>
+                  <Button
+                    style={{ alignSelf: 'baseline' }}
+                    type="button"
+                    className="btn--icon"
+                    onClick={handleAddDicount}
+                  >
                     <CheckmarkIcon />
                   </Button>
                 </div>
@@ -99,7 +120,11 @@ const ServicePage: React.FC<IServicePageProps> = (props) => {
                 </div>
               </>
             ) : (
-              <Button className="btn--link" onClick={() => handleToggleDiscountInput(true)}>
+              <Button
+                type="button"
+                className="btn--link"
+                onClick={() => handleToggleDiscountInput(true)}
+              >
                 Imam kupon
               </Button>
             )}
@@ -110,11 +135,11 @@ const ServicePage: React.FC<IServicePageProps> = (props) => {
         <h4 className={classes['service__section-title']}>Vaši podaci</h4>
         <div className={classes['service__user-inputs']}>
           <div className={classes['service__user-inputs-row']}>
-            <Input label="Ime i prezime" />
-            <Input label="Broj telefona" />
+            <Input label="Ime i prezime" {...register('user.name')} />
+            <Input label="Broj telefona" {...register('user.phone')} />
           </div>
-          <Input type="email" label="Email adresa" />
-          <Textarea label="Napomena (opcionalno)" />
+          <Input type="email" label="Email adresa" {...register('user.email')} />
+          <Textarea label="Napomena (opcionalno)" {...register('user.note')} />
         </div>
       </div>
       <div className={classes.service__section}>

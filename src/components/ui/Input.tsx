@@ -1,15 +1,15 @@
-import { ComponentPropsWithRef, forwardRef } from 'react';
+import { ComponentPropsWithoutRef, forwardRef } from 'react';
 
 import classes from './Input.module.scss';
 
 // ----------------------------------------------------------------
 
-interface IInputProps extends ComponentPropsWithRef<'input'> {
+interface IInputProps extends ComponentPropsWithoutRef<'input'> {
   label: string;
   errorText?: string;
 }
 
-const Input = forwardRef<HTMLInputElement, IInputProps>(
+const Input: React.FC<IInputProps> = forwardRef<HTMLInputElement, IInputProps>(
   ({ type = 'text', id, label, errorText, ...rest }, ref) => {
     const inputCLassName: string[] = [classes.container__input];
 

@@ -1,5 +1,5 @@
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 
 import Header from '@/components/layout/Header';
@@ -56,16 +56,6 @@ const App: React.FC = () => {
       },
     },
   });
-
-  // console.log('errors', errors);
-  console.log('FORM WATCH', methods.watch());
-  console.log('FORM ERRORS', methods.watch());
-
-  const { watch } = methods;
-
-  useEffect(() => {
-    console.log('watch u APP', watch());
-  }, [watch]);
 
   const handleChangePage = (page: EWizzardPage) => {
     setPage(page);

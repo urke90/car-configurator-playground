@@ -80,3 +80,5 @@ export const DISCOUNTS = [
     type: 'amount',
   },
 ];
+
+export const DISCOUNT_CODES = DISCOUNTS.map((d) => d.value);
