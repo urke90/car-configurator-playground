@@ -25,11 +25,21 @@
     color: colors.$primary-100;
   }
 
-  &__car-models {
+  &__inputs-wrapper {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
     padding: 10px;
+  }
+
+  &__service {
+    display: flex;
+    min-width: 255px;
+    gap: 2px;
+
+    &-price {
+      color: colors.$primary-100;
+    }
   }
 
   &__discount {

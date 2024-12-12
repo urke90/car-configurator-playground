@@ -1,7 +1,7 @@
 import ESCIcon from '../icons/ESCIcon';
+import Button from './Button';
 
 import classes from './Badge.module.scss';
-import Button from './Button';
 
 // ----------------------------------------------------------------
 
