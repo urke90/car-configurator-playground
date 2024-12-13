@@ -3,6 +3,7 @@ import { useFormContext } from 'react-hook-form';
 
 import Button from '@/components/ui/Button';
 import { CAR_SERVICES, EWizzardPage } from '@/lib/constants';
+
 import classes from './Overview.module.scss';
 
 // ----------------------------------------------------------------
@@ -15,28 +16,7 @@ interface IOverviewPage {
 const OverviewPage: React.FC<IOverviewPage> = ({ onChangePage }) => {
   const { getValues } = useFormContext();
 
-  // const data = {
-  //   carModel: 'Peugeot',
-  //   services: ['Zamjena ulja i filtera', 'Servis klima uređaja'],
-  //   price: 105.0,
-  //   totalDiscount: 21.0,
-  //   discount: {
-  //     id: '1',
-  //     code: 'Kupon123',
-  //     amount: 20,
-  //     type: 'percentage',
-  //   },
-  //   user: {
-  //     name: 'John Doe',
-  //     phone: '091 123 4567',
-  //     email: 'john.doe@mail.com',
-  //     note: 'Kod auta se prilikom prelaska preko rupa čuje lupanje pa bi i to trebalo pogledati',
-  //   },
-  // };
-
   const data = getValues();
-
-  console.log('data U OVERVIEW PAGE-U', data);
 
   return (
     <section className={classes.overview}>
