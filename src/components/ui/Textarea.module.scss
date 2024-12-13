@@ -20,6 +20,7 @@
     border-radius: base.$border-radius-3;
     transition: base.$transition;
     color: colors.$base-100;
+    resize: vertical;
 
     &--error {
       border: 1px solid colors.$error;

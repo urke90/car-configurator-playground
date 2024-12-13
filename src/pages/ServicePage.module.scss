@@ -1,0 +1,84 @@
+@use '/src/scss/colors' as colors;
+@use '/src/scss/typography';
+
+.service {
+  width: min(600px, 100%);
+  padding: 30px 0;
+  flex-grow: 1;
+  margin: auto;
+
+  &__title {
+    @extend .h2-bold;
+    padding: 40px 20px 20px 30px;
+    color: colors.$base-100;
+  }
+
+  &__section {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 0 30px 20px 30px;
+
+    &-message--error {
+      @extend .h5-regular;
+      color: colors.$error;
+    }
+  }
+
+  &__section-title {
+    @extend .h4-medium;
+    color: colors.$primary-100;
+  }
+
+  &__inputs-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 10px;
+  }
+
+  &__service {
+    display: flex;
+    min-width: 255px;
+    gap: 2px;
+
+    &-price {
+      color: colors.$primary-100;
+    }
+  }
+
+  &__discount {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 10px 15px;
+    border-radius: 5px;
+    background-color: colors.$bg-200;
+
+    &-action {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 10px;
+      width: 200px;
+    }
+
+    &-price {
+      @extend .h4-medium;
+      color: colors.$primary-100;
+    }
+  }
+
+  &__user-inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    &-row {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+  }
+}

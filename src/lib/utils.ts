@@ -31,3 +31,9 @@ export const generateClassName = (
 
   return classes;
 };
+
+export const formatPrice = (price: number, currency: string = '€', digits: number = 2) => {
+  if (price === 0) return `0${currency}`;
+
+  return `${price.toFixed(digits)}${currency}`;
+};
