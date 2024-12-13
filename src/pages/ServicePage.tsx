@@ -20,7 +20,7 @@ interface IServicePageProps {
 }
 
 const ServicePage: React.FC<IServicePageProps> = ({ onValidateAndNavigate }) => {
-  const [showDiscountInput, setShowDiscountInput] = useState(true);
+  const [showDiscountInput, setShowDiscountInput] = useState(false);
 
   const {
     formState: { errors },
