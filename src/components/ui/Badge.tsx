@@ -14,7 +14,7 @@ const Badge: React.FC<IBadgeProps> = ({ label, onClick }) => {
   return (
     <div className={classes.badge}>
       <span className={classes.badge__text}>{label}</span>
-      <Button className="btn--unstyled" onClick={onClick}>
+      <Button type="button" className="btn--unstyled" onClick={onClick}>
         <ESCIcon />
       </Button>
     </div>

@@ -38,6 +38,38 @@ const ServicePage: React.FC<IServicePageProps> = (props) => {
   const price = watch('price');
   const discount = watch('discount');
 
+  const appliedDiscount = DISCOUNTS.find((d) => d.id === discount.id);
+  console.log('appliedDiscount', appliedDiscount);
+
+  console.log('formState ERRORS', errors);
+
+  const handleToggleDiscountInput = (show: boolean) => {
+    setShowDiscountInput(show);
+  };
+
+  const handleAddDicount = async () => {
+    const isValid = await trigger('discount.code');
+    if (!isValid) return;
+
+    const discountCode = getValues('discount').code;
+
+    const foundDiscount = DISCOUNTS.find((d) => d.value === discountCode);
+
+    if (!foundDiscount) {
+      setError('discount.code', { message: 'Pogresan kupon.' });
+    } else {
+      setValue('discount', { ...foundDiscount });
+    }
+  };
+
+  const handleRemoveDiscount = (discountId: string) => {
+    console.log('discountId', discountId);
+
+    if (discountId === discount.id) {
+      setValue('discount', { id: '', code: '', amount: 0, type: undefined });
+    }
+  };
+
   useEffect(() => {
     const price = CAR_SERVICES.filter((service) => selectedServices.includes(service.id)).reduce(
       (acc, item) => (acc += item.price),
@@ -62,27 +94,6 @@ const ServicePage: React.FC<IServicePageProps> = (props) => {
       setValue('price', price);
     }
   }, [selectedServices, discount, setValue]);
-
-  console.log('formState ERRORS', errors);
-
-  const handleToggleDiscountInput = (show: boolean) => {
-    setShowDiscountInput(show);
-  };
-
-  const handleAddDicount = async () => {
-    const isValid = await trigger('discount.code');
-    if (!isValid) return;
-
-    const discountCode = getValues('discount').code;
-
-    const foundDiscount = DISCOUNTS.find((d) => d.value === discountCode);
-
-    if (!foundDiscount) {
-      setError('discount.code', { message: 'Pogresan kupon.' });
-    } else {
-      setValue('discount', { ...foundDiscount });
-    }
-  };
 
   return (
     <section className={classes.service}>
@@ -135,7 +146,7 @@ const ServicePage: React.FC<IServicePageProps> = (props) => {
                 <div className={classes['service__discount-action']}>
                   <Input
                     style={{ width: '156px', height: 'auto' }}
-                    label={''}
+                    label=""
                     {...register('discount.code')}
                     errorText={errors.discount?.code?.message}
                   />
@@ -144,14 +155,19 @@ const ServicePage: React.FC<IServicePageProps> = (props) => {
                     type="button"
                     className="btn--icon"
                     onClick={handleAddDicount}
-                    disabled={selectedServices.length === 0 || discount.id !== ''}
+                    disabled={selectedServices.length === 0 || !!appliedDiscount}
                   >
                     <CheckmarkIcon />
                   </Button>
                 </div>
-                <div style={{ marginTop: '10px' }}>
-                  <Badge label="Kupon123" />
-                </div>
+                {appliedDiscount?.id ? (
+                  <div style={{ marginTop: '10px' }}>
+                    <Badge
+                      label={appliedDiscount.label}
+                      onClick={() => handleRemoveDiscount(appliedDiscount.id)}
+                    />
+                  </div>
+                ) : null}
               </>
             ) : (
               <Button
