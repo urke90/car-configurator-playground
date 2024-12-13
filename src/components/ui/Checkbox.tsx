@@ -1,4 +1,5 @@
 import { forwardRef, type ComponentPropsWithoutRef } from 'react';
+
 import classes from './Checkbox.module.scss';
 
 // ----------------------------------------------------------------
@@ -20,15 +21,15 @@ const Checkbox: React.FC<ICheckboxProps> = forwardRef<HTMLInputElement, ICheckbo
 
     return (
       <div className={classes.checkbox}>
-        <input
-          type="checkbox"
-          ref={ref}
-          id={id}
-          className={inputClassName.join(' ')}
-          disabled={disabled}
-          {...rest}
-        />
         <label className={labelClassName.join(' ')} htmlFor={id}>
+          <input
+            type="checkbox"
+            ref={ref}
+            id={id}
+            className={inputClassName.join(' ')}
+            disabled={disabled}
+            {...rest}
+          />
           {label}
         </label>
       </div>
