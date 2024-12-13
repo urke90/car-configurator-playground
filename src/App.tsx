@@ -53,7 +53,10 @@ const App: React.FC = () => {
   };
 
   const onSubmit = (data: unknown) => {
+    // ! OVDE BI ISAO TANSTACK QUERY useMutation (mozda extracted u neki custom hook) ali nemam API koji treba da se gadja
     console.log('data', data);
+
+    setPage(EWizzardPage.COMPLETION_PAGE);
   };
 
   return (
@@ -66,7 +69,9 @@ const App: React.FC = () => {
             {page === EWizzardPage.CONFIGURATOR_PAGE && (
               <ServicePage onValidateAndNavigate={handleValidateAndNavigate} />
             )}
-            {page === EWizzardPage.OVERVIEW_PAGE && <OverviewPage />}
+            {page === EWizzardPage.OVERVIEW_PAGE && (
+              <OverviewPage onChangePage={handleChangePage} />
+            )}
           </form>
         </FormProvider>
         {page === EWizzardPage.COMPLETION_PAGE && <CompletionPage />}
