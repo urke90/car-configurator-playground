@@ -1,0 +1,49 @@
+@use '/src/scss/colors' as colors;
+@use '/src/scss/typography';
+
+.overview {
+  width: min(600px, 100%);
+  flex-grow: 1;
+  margin: auto;
+
+  &__title {
+    @extend .h2-bold;
+    padding: 40px 20px 20px 30px;
+    color: colors.$base-100;
+  }
+
+  &__section {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 0 30px 20px 30px;
+
+    &-title {
+      @extend .h4-medium;
+      color: colors.$primary-100;
+    }
+
+    &-text {
+      @extend .h5-regular;
+      color: colors.$base-100;
+    }
+  }
+
+  &__details {
+    padding: 20px;
+
+    &-title {
+      @extend .h4-medium;
+      color: colors.$primary-100;
+    }
+
+    &-text {
+      @extend .h5-regular;
+      color: colors.$base-100;
+
+      &--base-200 {
+        color: colors.$base-200;
+      }
+    }
+  }
+}
