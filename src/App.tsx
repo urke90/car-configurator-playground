@@ -2,37 +2,18 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 
-import Header from '@/components/layout/Header';
-import { EWizzardPage } from '@/lib/constants';
+import Header from './components/layout/Header';
+import { EWizzardPage } from './lib/constants';
 
 import CompletionPage from '@/pages/CompletionPage';
-import LandingPage from '@/pages/LandingPage';
-import OverviewPage from '@/pages/OverviewPage';
-import ConfiguratorPage from '@/pages/ServicePage';
 import { type IServiceSchema, serviceSchema } from './lib/validation';
+import LandingPage from './pages/LandingPage';
+import OverviewPage from './pages/OverviewPage';
+import ServicePage from './pages/ServicePage';
 
 import classes from './App.module.scss';
 
 // ----------------------------------------------------------------
-
-// interface IFormState {
-//   carModel: string;
-//   service: string[];
-//   price: number;
-//   discountedPrice: number;
-//   discount: {
-//     id: string;
-//     code: string;
-//     amount: number;
-//     type: 'percentage' | 'amount';
-//   };
-//   user: {
-//     name: string;
-//     phone: string;
-//     email: string;
-//     note: string;
-//   };
-// }
 
 const App: React.FC = () => {
   const [page, setPage] = useState(EWizzardPage.CONFIGURATOR_PAGE);
@@ -63,6 +44,14 @@ const App: React.FC = () => {
     setPage(page);
   };
 
+  const handleValidateAndNavigate = async () => {
+    const formIsValid = await methods.trigger();
+
+    if (!formIsValid) return;
+
+    handleChangePage(EWizzardPage.OVERVIEW_PAGE);
+  };
+
   const onSubmit = (data: unknown) => {
     console.log('data', data);
   };
@@ -74,7 +63,9 @@ const App: React.FC = () => {
         {page === EWizzardPage.LANDING_PAGE && <LandingPage onChangePage={handleChangePage} />}
         <FormProvider {...methods}>
           <form onSubmit={methods.handleSubmit(onSubmit)}>
-            {page === EWizzardPage.CONFIGURATOR_PAGE && <ConfiguratorPage />}
+            {page === EWizzardPage.CONFIGURATOR_PAGE && (
+              <ServicePage onValidateAndNavigate={handleValidateAndNavigate} />
+            )}
             {page === EWizzardPage.OVERVIEW_PAGE && <OverviewPage />}
           </form>
         </FormProvider>

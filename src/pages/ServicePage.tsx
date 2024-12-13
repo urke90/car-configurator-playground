@@ -15,9 +15,11 @@ import classes from './ServicePage.module.scss';
 
 // ----------------------------------------------------------------
 
-interface IServicePageProps {}
+interface IServicePageProps {
+  onValidateAndNavigate: () => void;
+}
 
-const ServicePage: React.FC<IServicePageProps> = (props) => {
+const ServicePage: React.FC<IServicePageProps> = ({ onValidateAndNavigate }) => {
   const [showDiscountInput, setShowDiscountInput] = useState(true);
 
   const {
@@ -29,10 +31,6 @@ const ServicePage: React.FC<IServicePageProps> = (props) => {
     setError,
     setValue,
   } = useFormContext<IServiceSchema>();
-
-  const form = watch();
-
-  console.log('form', form);
 
   const selectedServices = watch('services');
   const price = watch('price');
@@ -60,8 +58,6 @@ const ServicePage: React.FC<IServicePageProps> = (props) => {
   };
 
   const handleRemoveDiscount = (discountId: string) => {
-    console.log('discountId', discountId);
-
     if (discountId === discount.id) {
       setValue('discount', { id: '', code: '', amount: 0, type: undefined });
     }
@@ -207,7 +203,7 @@ const ServicePage: React.FC<IServicePageProps> = (props) => {
         </div>
       </div>
       <div className={classes.service__section}>
-        <Button type="submit" className="btn--small">
+        <Button type="button" className="btn--small" onClick={() => onValidateAndNavigate()}>
           Dalje
         </Button>
       </div>
