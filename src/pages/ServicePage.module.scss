@@ -3,7 +3,6 @@
 
 .service {
   width: min(600px, 100%);
-  padding: 30px 0;
   flex-grow: 1;
   margin: auto;
 
@@ -19,15 +18,15 @@
     gap: 10px;
     padding: 0 30px 20px 30px;
 
+    &-title {
+      @extend .h4-medium;
+      color: colors.$primary-100;
+    }
+
     &-message--error {
       @extend .h5-regular;
       color: colors.$error;
     }
-  }
-
-  &__section-title {
-    @extend .h4-medium;
-    color: colors.$primary-100;
   }
 
   &__inputs-wrapper {

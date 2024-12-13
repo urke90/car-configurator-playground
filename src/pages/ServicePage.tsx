@@ -138,7 +138,7 @@ const ServicePage: React.FC<IServicePageProps> = ({ onValidateAndNavigate }) => 
               <>
                 <div className={classes['service__discount-action']}>
                   <Input
-                    style={{ width: '156px', height: 'auto' }}
+                    style={{ width: '156px' }}
                     label=""
                     {...register('discount.code')}
                     errorText={errors.discount?.code?.message}
