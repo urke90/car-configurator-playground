@@ -85,7 +85,7 @@ export const DISCOUNTS: IDiscount[] = [
     label: 'Kupon123',
     value: 'Kupon123',
     amount: 20,
-    type: 'amount',
+    type: 'percentage',
   },
 ];
 

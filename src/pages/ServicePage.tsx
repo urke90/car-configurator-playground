@@ -34,11 +34,6 @@ const ServicePage: React.FC<IServicePageProps> = (props) => {
   const price = watch('price');
   const discount = watch('discount');
 
-  const p = formatPrice(0);
-
-  console.log('DAJ EUROE', p);
-  // console.log('selectedServices', selectedServices);
-
   useEffect(() => {
     const price = CAR_SERVICES.filter((service) => selectedServices.includes(service.id)).reduce(
       (acc, item) => (acc += item.price),
@@ -49,10 +44,10 @@ const ServicePage: React.FC<IServicePageProps> = (props) => {
       let discountedPrice = 0;
       if (discount.type === 'amount') {
         discountedPrice = price - discount.amount;
-        setValue('price', discountedPrice);
+        setValue('discountedPrice', discountedPrice);
       } else {
         discountedPrice = price - (price * discount.amount) / 100;
-        setValue('price', discountedPrice);
+        setValue('discountedPrice', discountedPrice);
       }
     } else {
       setValue('price', price);
@@ -97,6 +92,9 @@ const ServicePage: React.FC<IServicePageProps> = (props) => {
             </div>
           ))}
         </div>
+        {errors.carModel?.message && (
+          <p className={classes['service__section-message--error']}>{errors.carModel.message}</p>
+        )}
       </div>
       <div className={`${classes.service__section}`}>
         <h4 className={classes['service__section-title']}>
@@ -115,6 +113,9 @@ const ServicePage: React.FC<IServicePageProps> = (props) => {
             </div>
           ))}
         </div>
+        {errors.services?.message && (
+          <p className={classes['service__section-message--error']}>{errors.services.message}</p>
+        )}
         <div className={classes.service__discount}>
           <p className={classes['service__discount-text']}>
             ukupno: <span className={classes['service__discount-price']}>{formatPrice(price)}</span>
@@ -159,11 +160,28 @@ const ServicePage: React.FC<IServicePageProps> = (props) => {
         <h4 className={classes['service__section-title']}>Vaši podaci</h4>
         <div className={classes['service__user-inputs']}>
           <div className={classes['service__user-inputs-row']}>
-            <Input label="Ime i prezime" {...register('user.name')} />
-            <Input label="Broj telefona" {...register('user.phone')} />
+            <Input
+              label="Ime i prezime"
+              {...register('user.name')}
+              errorText={errors.user?.name?.message ? errors.user.name.message : ''}
+            />
+            <Input
+              label="Broj telefona"
+              {...register('user.phone')}
+              errorText={errors.user?.phone?.message ? errors.user.phone.message : ''}
+            />
           </div>
-          <Input type="email" label="Email adresa" {...register('user.email')} />
-          <Textarea label="Napomena (opcionalno)" {...register('user.note')} />
+          <Input
+            type="email"
+            label="Email adresa"
+            {...register('user.email')}
+            errorText={errors.user?.email?.message ? errors.user.email.message : ''}
+          />
+          <Textarea
+            label="Napomena (opcionalno)"
+            {...register('user.note')}
+            errorText={errors.user?.note?.message ? errors.user.note.message : ''}
+          />
         </div>
       </div>
       <div className={classes.service__section}>
