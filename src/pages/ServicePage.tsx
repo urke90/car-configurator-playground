@@ -64,7 +64,7 @@ const ServicePage: React.FC<IServicePageProps> = ({ onValidateAndNavigate }) => 
   };
 
   useEffect(() => {
-    const price = CAR_SERVICES.filter((service) => selectedServices.includes(service.id)).reduce(
+    const price = CAR_SERVICES.filter((service) => selectedServices.includes(service.value)).reduce(
       (acc, item) => (acc += item.price),
       0
     );
@@ -114,12 +114,12 @@ const ServicePage: React.FC<IServicePageProps> = ({ onValidateAndNavigate }) => 
           Odaberite jednu ili više usluga koju trebate
         </h4>
         <div className={classes['service__inputs-wrapper']}>
-          {CAR_SERVICES.map(({ id, label, price }) => (
+          {CAR_SERVICES.map(({ id, label, price, value }) => (
             <div key={id} className={classes['service__service']}>
               <Checkbox
                 {...register('services')}
                 label={label}
-                value={id}
+                value={value}
                 isError={!!errors.services?.message}
               />
               <span className={classes['service__service-price']}>({price}€)</span>

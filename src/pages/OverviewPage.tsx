@@ -1,7 +1,7 @@
 import { formatPrice } from '@/lib/utils';
 import { useFormContext } from 'react-hook-form';
 
-import React from 'react';
+import { CAR_SERVICES } from '@/lib/constants';
 import classes from './Overview.module.scss';
 
 // ----------------------------------------------------------------
@@ -9,24 +9,26 @@ import classes from './Overview.module.scss';
 const OverviewPage = () => {
   const { getValues } = useFormContext();
 
-  const data = {
-    carModel: 'Peugeot',
-    services: ['Zamjena ulja i filtera', 'Servis klima uređaja'],
-    price: 105.0,
-    totalDiscount: 21.0,
-    discount: {
-      id: '1',
-      code: 'Kupon123',
-      amount: 20,
-      type: 'percentage',
-    },
-    user: {
-      name: 'John Doe',
-      phone: '091 123 4567',
-      email: 'john.doe@mail.com',
-      note: 'Kod auta se prilikom prelaska preko rupa čuje lupanje pa bi i to trebalo pogledati',
-    },
-  };
+  // const data = {
+  //   carModel: 'Peugeot',
+  //   services: ['Zamjena ulja i filtera', 'Servis klima uređaja'],
+  //   price: 105.0,
+  //   totalDiscount: 21.0,
+  //   discount: {
+  //     id: '1',
+  //     code: 'Kupon123',
+  //     amount: 20,
+  //     type: 'percentage',
+  //   },
+  //   user: {
+  //     name: 'John Doe',
+  //     phone: '091 123 4567',
+  //     email: 'john.doe@mail.com',
+  //     note: 'Kod auta se prilikom prelaska preko rupa čuje lupanje pa bi i to trebalo pogledati',
+  //   },
+  // };
+
+  const data = getValues();
 
   console.log('data U OVERVIEW PAGE-U', data);
 
@@ -49,10 +51,11 @@ const OverviewPage = () => {
           </div>
           <div className={classes['overview__details-section']} style={{ paddingTop: '15px' }}>
             <h4 className={classes['overview__details-title']}>Odabrane usluge</h4>
-            <div className={classes['overview__details-row']}>
-              <h5 className={classes['overview__details-text']}>Zamjena ulja i filtera</h5>
-              <h5 className={classes['overview__details-text']}>65,00 €</h5>
-            </div>
+            {CAR_SERVICES.filter((service) => data.services.includes(service.value)).map(
+              ({ id, label, price }) => (
+                <ServiceDetailsRow key={id} label={label} price={price} />
+              )
+            )}
             {data.discount.id && (
               <div className={classes['overview__details-price-wrapper']}>
                 <h5 className={classes['overview__details-text']}>
@@ -85,6 +88,20 @@ const OverviewPage = () => {
   );
 };
 
+interface IServiceDetailsRow {
+  label: string;
+  price: number;
+}
+
+const ServiceDetailsRow: React.FC<IServiceDetailsRow> = ({ label, price }) => {
+  return (
+    <div className={classes['overview__details-row']}>
+      <h5 className={classes['overview__details-text']}>{label}</h5>
+      <h5 className={classes['overview__details-text']}>{formatPrice(price)}</h5>
+    </div>
+  );
+};
+
 interface IUserDataRow {
   label: string;
   value: string;
@@ -102,3 +119,8 @@ const UserDataRow: React.FC<IUserDataRow> = ({ label, value }) => {
 };
 
 export default OverviewPage;
+
+/* <div className={classes['overview__details-row']}>
+              <h5 className={classes['overview__details-text']}>Zamjena ulja i filtera</h5>
+              <h5 className={classes['overview__details-text']}>65,00 €</h5>
+            </div> */
