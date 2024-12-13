@@ -1,9 +1,10 @@
 import SuccessIcon from '@/components/icons/Success';
+
 import classes from './LandingCompletionPage.module.scss';
 
 // ----------------------------------------------------------------
 
-const CompletionPage = () => {
+const CompletionPage: React.FC = () => {
   return (
     <section className={classes.page}>
       <div className={classes.page__container}>

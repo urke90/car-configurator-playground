@@ -16,7 +16,7 @@ import classes from './App.module.scss';
 // ----------------------------------------------------------------
 
 const App: React.FC = () => {
-  const [page, setPage] = useState(EWizzardPage.CONFIGURATOR_PAGE);
+  const [page, setPage] = useState(EWizzardPage.LANDING_PAGE);
 
   const methods = useForm<IServiceSchema>({
     resolver: zodResolver(serviceSchema),
