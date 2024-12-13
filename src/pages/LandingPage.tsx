@@ -1,8 +1,8 @@
-import classes from './LandingCompletionPage.module.scss';
-
 import ToolsIcon from '@/components/icons/Tools';
 import Button from '@/components/ui/Button';
 import { EWizzardPage } from '@/lib/constants';
+
+import classes from './LandingCompletionPage.module.scss';
 
 // ----------------------------------------------------------------
 

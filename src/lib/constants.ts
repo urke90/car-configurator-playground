@@ -88,5 +88,3 @@ export const DISCOUNTS: IDiscount[] = [
     type: 'percentage',
   },
 ];
-
-export const DISCOUNT_CODES = DISCOUNTS.map((d) => d.value);
