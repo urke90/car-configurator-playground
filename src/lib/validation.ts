@@ -14,10 +14,15 @@ export const serviceSchema = z.object({
     type: z.enum(['percentage', 'amount']).optional(),
   }),
   user: z.object({
-    name: z.string().min(3, 'Ime i prezime je obavezno.'),
-    phone: z.string().min(3, 'Telefon je obavezan.'),
-    email: z.string().email('Email je obavezan'),
-    note: z.string().min(3, 'Napomena mora imati najmanje 3 karaktera'),
+    name: z.string().trim().min(3, 'Ime i prezime je obavezno.'),
+    phone: z.string().trim().min(3, 'Telefon je obavezan.'),
+    email: z.string().trim().email('Email je obavezan.'),
+    note: z
+      .string()
+      .trim()
+      .min(3, 'Napomena mora imati najmanje 3 karaktera.')
+      .optional()
+      .or(z.literal('')),
   }),
 });
 

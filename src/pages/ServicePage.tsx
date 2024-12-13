@@ -8,7 +8,7 @@ import Textarea from '@/components/ui/Textarea';
 import { CAR_MODELS, CAR_SERVICES, DISCOUNTS } from '@/lib/constants';
 import { formatPrice } from '@/lib/utils';
 import type { IServiceSchema } from '@/lib/validation';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useFormContext } from 'react-hook-form';
 
 import classes from './ServicePage.module.scss';
@@ -38,10 +38,7 @@ const ServicePage: React.FC<IServicePageProps> = (props) => {
   const price = watch('price');
   const discount = watch('discount');
 
-  const appliedDiscount = DISCOUNTS.find((d) => d.id === discount.id);
-  console.log('appliedDiscount', appliedDiscount);
-
-  console.log('formState ERRORS', errors);
+  const appliedDiscount = useMemo(() => DISCOUNTS.find((d) => d.id === discount.id), [discount.id]);
 
   const handleToggleDiscountInput = (show: boolean) => {
     setShowDiscountInput(show);
@@ -101,7 +98,7 @@ const ServicePage: React.FC<IServicePageProps> = (props) => {
       <div className={`${classes.service__section}`}>
         <h4 className={classes['service__section-title']}>Odaberite proizvođača vašeg vozila</h4>
         <div className={classes['service__inputs-wrapper']}>
-          {CAR_MODELS.map(({ id, label, value, name }) => (
+          {CAR_MODELS.map(({ id, label, value }) => (
             <div key={id} style={{ minWidth: '166px' }}>
               <RadioButton
                 {...register('carModel')}
