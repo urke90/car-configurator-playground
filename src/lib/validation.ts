@@ -6,7 +6,7 @@ export const serviceSchema = z.object({
   carModel: z.string().min(1, 'Izaberite model.'),
   services: z.array(z.string()).min(1, 'Izaberite najmanje jednu uslugu.'),
   price: z.number(),
-  discountedPrice: z.number(),
+  totalDiscount: z.number(),
   discount: z.object({
     id: z.string().optional(),
     code: z.string().optional(),

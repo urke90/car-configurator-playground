@@ -43,7 +43,7 @@ const App: React.FC = () => {
       carModel: '',
       services: [],
       price: 0,
-      discountedPrice: 0,
+      totalDiscount: 0,
       discount: {
         code: '',
         amount: 0,

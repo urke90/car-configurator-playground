@@ -30,6 +30,10 @@ const ServicePage: React.FC<IServicePageProps> = (props) => {
     setValue,
   } = useFormContext<IServiceSchema>();
 
+  const form = watch();
+
+  console.log('form', form);
+
   const selectedServices = watch('services');
   const price = watch('price');
   const discount = watch('discount');
@@ -42,12 +46,17 @@ const ServicePage: React.FC<IServicePageProps> = (props) => {
 
     if (discount && discount.amount) {
       let discountedPrice = 0;
+      let totalDiscount = 0;
       if (discount.type === 'amount') {
+        totalDiscount = discount.amount;
         discountedPrice = price - discount.amount;
-        setValue('discountedPrice', discountedPrice);
+        setValue('totalDiscount', totalDiscount);
+        setValue('price', discountedPrice);
       } else {
+        totalDiscount = (price * discount.amount) / 100;
         discountedPrice = price - (price * discount.amount) / 100;
-        setValue('discountedPrice', discountedPrice);
+        setValue('totalDiscount', totalDiscount);
+        setValue('price', discountedPrice);
       }
     } else {
       setValue('price', price);
