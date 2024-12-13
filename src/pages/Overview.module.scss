@@ -69,10 +69,21 @@
       @extend .h5-regular;
       color: colors.$base-100;
 
+      &--primary {
+        @extend .h5-medium;
+        color: colors.$primary-100;
+      }
+
       &--base-200 {
         @extend .h5-regular;
         color: colors.$base-200;
       }
     }
+  }
+
+  &__actions {
+    display: flex;
+    gap: 20px;
+    padding: 0px 30px 20px 30px;
   }
 }

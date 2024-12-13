@@ -1,12 +1,18 @@
 import { formatPrice } from '@/lib/utils';
 import { useFormContext } from 'react-hook-form';
 
-import { CAR_SERVICES } from '@/lib/constants';
+import Button from '@/components/ui/Button';
+import { CAR_SERVICES, EWizzardPage } from '@/lib/constants';
 import classes from './Overview.module.scss';
 
 // ----------------------------------------------------------------
 
-const OverviewPage = () => {
+interface IOverviewPage {
+  // eslint-disable-next-line no-unused-vars
+  onChangePage: (page: EWizzardPage) => void;
+}
+
+const OverviewPage: React.FC<IOverviewPage> = ({ onChangePage }) => {
   const { getValues } = useFormContext();
 
   // const data = {
@@ -69,7 +75,11 @@ const OverviewPage = () => {
             )}
             <div className={classes['overview__details-price-wrapper']}>
               <h5 className={classes['overview__details-text']}>Ukupno:</h5>
-              <h5 className={classes['overview__details-text']}>{formatPrice(data.price)}</h5>
+              <h5 className={classes['overview__details-text']}>
+                <span className={classes['overview__details-text--primary']}>
+                  {formatPrice(data.price)}
+                </span>{' '}
+              </h5>
             </div>
           </div>
           <div
@@ -83,6 +93,18 @@ const OverviewPage = () => {
             <UserDataRow label="Napomena:" value={data.user.note} />
           </div>
         </div>
+      </div>
+      <div className={classes['overview__actions']}>
+        <Button
+          type="button"
+          className="btn--secondary"
+          onClick={() => onChangePage(EWizzardPage.CONFIGURATOR_PAGE)}
+        >
+          Nazad
+        </Button>
+        <Button type="submit" style={{ width: '100%' }} className="btn--small">
+          Pošalji
+        </Button>
       </div>
     </section>
   );
@@ -108,6 +130,7 @@ interface IUserDataRow {
 }
 
 const UserDataRow: React.FC<IUserDataRow> = ({ label, value }) => {
+  if (!value) return null;
   return (
     <div className={classes['overview__details-user-row']}>
       <h5 style={{ alignSelf: 'baseline' }} className={classes['overview__details-text--base-200']}>
@@ -119,8 +142,3 @@ const UserDataRow: React.FC<IUserDataRow> = ({ label, value }) => {
 };
 
 export default OverviewPage;
-
-/* <div className={classes['overview__details-row']}>
-              <h5 className={classes['overview__details-text']}>Zamjena ulja i filtera</h5>
-              <h5 className={classes['overview__details-text']}>65,00 €</h5>
-            </div> */

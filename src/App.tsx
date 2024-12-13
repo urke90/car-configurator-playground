@@ -66,7 +66,9 @@ const App: React.FC = () => {
             {page === EWizzardPage.CONFIGURATOR_PAGE && (
               <ServicePage onValidateAndNavigate={handleValidateAndNavigate} />
             )}
-            {page === EWizzardPage.OVERVIEW_PAGE && <OverviewPage />}
+            {page === EWizzardPage.OVERVIEW_PAGE && (
+              <OverviewPage onChangePage={handleChangePage} />
+            )}
           </form>
         </FormProvider>
         {page === EWizzardPage.COMPLETION_PAGE && <CompletionPage />}
