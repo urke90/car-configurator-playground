@@ -45,6 +45,7 @@ const App: React.FC = () => {
       price: 0,
       totalDiscount: 0,
       discount: {
+        id: '',
         code: '',
         amount: 0,
         type: undefined,

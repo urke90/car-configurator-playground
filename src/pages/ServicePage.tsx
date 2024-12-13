@@ -144,7 +144,7 @@ const ServicePage: React.FC<IServicePageProps> = (props) => {
                     type="button"
                     className="btn--icon"
                     onClick={handleAddDicount}
-                    disabled={selectedServices.length === 0}
+                    disabled={selectedServices.length === 0 || discount.id !== ''}
                   >
                     <CheckmarkIcon />
                   </Button>
