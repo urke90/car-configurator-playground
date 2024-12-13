@@ -54,6 +54,12 @@
       padding: 5px 5px 0 5px;
     }
 
+    &-user-row {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
     &-title {
       @extend .h4-medium;
       color: colors.$primary-100;
@@ -64,6 +70,7 @@
       color: colors.$base-100;
 
       &--base-200 {
+        @extend .h5-regular;
         color: colors.$base-200;
       }
     }

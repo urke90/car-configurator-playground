@@ -1,6 +1,7 @@
 import { formatPrice } from '@/lib/utils';
 import { useFormContext } from 'react-hook-form';
 
+import React from 'react';
 import classes from './Overview.module.scss';
 
 // ----------------------------------------------------------------
@@ -68,12 +69,35 @@ const OverviewPage = () => {
               <h5 className={classes['overview__details-text']}>{formatPrice(data.price)}</h5>
             </div>
           </div>
-          {/* <div className={classes['overview__details-section']} style={{ paddingTop: '15px', paddingBottom: '20px' }}>
+          <div
+            className={classes['overview__details-section']}
+            style={{ paddingTop: '15px', paddingBottom: '20px' }}
+          >
             <h4 className={classes['overview__details-title']}>Kontakt podaci</h4>
-          </div> */}
+            <UserDataRow label="Ime i prezime:" value={data.user.name} />
+            <UserDataRow label="Email adresa:" value={data.user.email} />
+            <UserDataRow label="Broj telefona:" value={data.user.phone} />
+            <UserDataRow label="Napomena:" value={data.user.note} />
+          </div>
         </div>
       </div>
     </section>
+  );
+};
+
+interface IUserDataRow {
+  label: string;
+  value: string;
+}
+
+const UserDataRow: React.FC<IUserDataRow> = ({ label, value }) => {
+  return (
+    <div className={classes['overview__details-user-row']}>
+      <h5 style={{ alignSelf: 'baseline' }} className={classes['overview__details-text--base-200']}>
+        {label}
+      </h5>
+      <h5 className={classes['overview__details-text']}>{value}</h5>
+    </div>
   );
 };
 
